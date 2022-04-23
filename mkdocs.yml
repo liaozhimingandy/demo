@@ -1,7 +1,7 @@
 site_name: '文档'
 site_author: 'andy'
-site_description: '看我七十二变'
-site_url: 'https://www.xncoding.com/'
+site_description: 'rhapsody文档'
+site_url: 'https://www.alsoapp.com/'
 copyright: Copyright © 2022 andy
 
 # 文档说明:https://squidfunk.github.io/mkdocs-material/setup/setting-up-tags/
