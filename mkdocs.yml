@@ -1,4 +1,5 @@
-site_name: '文档'
+# Project information
+site_name: 'rhapsody使用笔记'
 site_author: 'andy'
 site_description: 'rhapsody文档'
 site_url: 'https://www.alsoapp.com/'
@@ -11,9 +12,21 @@ copyright: Copyright © 2022 andy
 # repo_url: 'https://github.com/yidao620c/core-algorithm'
 # edit_uri: 'blob/master/docs/'
 
+# Configuration
 theme: 
-  name: material
+  name: null
+  # custom_dir: overrides
+  custom_dir: !ENV [THEME_DIR, "material"]
   language: 'zh'  # 配置语言
+   # Static files
+  static_templates:
+    - 404.html
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.png
+  icon:
+    logo: logo
   palette:
     - media: "(prefers-color-scheme: light)" 
       scheme: default
@@ -32,30 +45,16 @@ theme:
     - navigation.top
     # - toc.integrate
 
-nav:
-- 首页: index.md
+# Plugins
+plugins:
+  - search
 
-- 环境部署-单机版:
-  - windows部署-1: setup/rhapsody_windows.md
-  - centos7部署-2: setup/rhapsody_centos7.md
-  # - 容器部署-3: setup/docker_installer.md
-  # - docker安装: setup/docker_setup_centos7.md
+# Customization
+extra:
+  version:
+    default: stable
 
-- 常用通讯点:
-  - Web Service Client操作: comm/Web_Service_Client.md
-
-- 常用过滤器:
-  - database: filter/database.md
-  - JavaScript: filter/JavaScript.md
-  - freemarker: filter/freemarker.md
-  
-
-- 其他:
-  # - 命名规范: other/naming_conventions.md
-  - 正则表达式: filter/regexp.md
-  - 常见问题: other/FAQ.md
-  # - api操作: other/api.md
-
+# Extensions
 markdown_extensions:
   - tables # 数据表格
   - admonition  # 提示块
@@ -82,12 +81,24 @@ markdown_extensions:
 #  - pymdownx.magiclink  # 自动识别超链接
   - pymdownx.tasklist:  # 复选框checklist
       custom_checkbox: true
+  - md_in_html
 
-# PDF导出插件
-plugins:
-  - search
-
-
-extra:
-  version:
-    default: stable
+# Page tree
+nav:
+- 首页: index.md
+- 环境部署-单机版:
+  - windows部署-1: setup/rhapsody_windows.md
+  - centos7部署-2: setup/rhapsody_centos7.md
+  # - 容器部署-3: setup/docker_installer.md
+  # - docker安装: setup/docker_setup_centos7.md
+- 常用通讯点:
+  - Web Service Client操作: comm/Web_Service_Client.md
+- 常用过滤器:
+  - database: filter/database.md
+  - JavaScript: filter/JavaScript.md
+  - freemarker: filter/freemarker.md
+- 其他:
+  # - 命名规范: other/naming_conventions.md
+  - 正则表达式: filter/regexp.md
+  - 常见问题: other/FAQ.md
+  # - api操作: other/api.md
