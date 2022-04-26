@@ -1,2 +1,3 @@
-template: overrides/home.html
-title: Material for MkDocs
+template: home.html 
+title: note for rhapsody
+
