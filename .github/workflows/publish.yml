@@ -36,8 +36,6 @@ env:
 
 jobs:
   publish_docker:
-    name: Build and push Docker image
-    if: github.event.repository.fork == false
     runs-on: ubuntu-latest
 
     steps:
