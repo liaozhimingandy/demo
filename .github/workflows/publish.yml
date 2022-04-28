@@ -34,9 +34,6 @@ env:
    # 设置 docker 镜像名
   # IMAGE_NAME: decrypt_wechat_database
 
-permissions:
-  contents: read
-
 jobs:
   publish_docker:
     name: Build and push Docker image
