@@ -28,7 +28,14 @@ ${inputXML.xml}
 # 为空时则使用默认值
 ${msg!""}或${msg!}
 
-# ?? 判断左侧的变量是否丢失
+# ?? 判断变量是否存在或对象的属性是否为null
+
+#删除连续多个变量之间的换行符; 重要--可以去除多余空白,节约空间
+<#t>标签，它的意思是去掉当前行首尾的空白，注意，换行也当成空白
+#类似还有<#lt><#rt>，意思是去掉左侧和右侧的空白。
+
+#如何输出${xxx} 这样的字符串 
+<#noparse>${ccc}</#noparse>   
 ```
 
 #### 字符串操作
@@ -88,6 +95,8 @@ ${"   v abcd cc "?trim}
 <#list " we are chinese you no diao"?word_list as word>
     ${word}
 </#list><#if word_has_next>,</#if>
+?将特殊html标记进行转换,如<转换成<
+?matches：是否匹配 一个正则
 ```
 
 #### 日期相关操作
@@ -296,6 +305,51 @@ ${(tmp.EMPI_ID == '')?string('0', tmp.EMPI_ID)}
 <#else>
   x is not 1 nor 2 nor 3 nor 4
 </#if>
+```
+
+#### 数组操作
+
+```javascript
+<#--声明一个序列，包含若干个元素--> 
+<#assign order_status_is_not_neeed = ['U', 'D', 'C']> 
+<#--使用seq_contains判断序列中的元素是否存在-->
+eg1:
+order_status_is_not_neeed?seq_contains(data.StatusCode)
+eg2:
+"U": ${x?seq_contains("U")?string("yes", "no")}
+//输出 U:yes
+//?size: 得到序列、数组的元素个数
+//遍历序列
+<#list status as order_status_is_not_neeed> 
+    ${status}<br> 
+</#list>　　
+```
+
+#### 带参数的宏
+
+```javascript
+宏是和某个变量关联的模板片断，以便在模板中通过用户定义指令使用该变量
+宏的参数是局部变量，只能在宏定义中有效 
+2.1：带一个参数的宏 
+定义宏
+<#macro greet person> 
+    <font size="+2">Hello ${person}!</font> 
+</#macro> 
+调用宏   
+<@greet person="test"/>  　　
+2.2：带多个参数的宏 
+<#macro greet person color> 
+    <font size="+2" color="${color}">Hello ${person}!</font> 
+</#macro> 
+<@greet person="test" color="blue"/> 
+   
+2.3： 带参数缺省值的宏 
+<#macro greet person color="blue"> 
+    <font size="+2" color="${color}">Hello ${person}!</font> 
+</#macro> 
+
+<@greet person="test" color="yellow"/>  <br> 
+<@greet person="test"/>
 ```
 
 #### 正则表达式
