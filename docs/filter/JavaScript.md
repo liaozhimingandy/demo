@@ -2,7 +2,7 @@
 
 [参考资料](https://www.w3school.com.cn/js/pro_js_typeconversion.asp)
 
-!!! warning "JavaScript过滤器不应处理查询大批量json数据,否则导致引擎GC Pause"
+!!! warning "JavaScript过滤器不应处理大批量json数据,否则导致引擎GC Pause"
 
 ##### 常用
 
