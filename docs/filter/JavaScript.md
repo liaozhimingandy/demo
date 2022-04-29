@@ -2,7 +2,7 @@
 
 [参考资料](https://www.w3school.com.cn/js/pro_js_typeconversion.asp)
 
-!!! important  "js解析json过大消息时,容易出现内存爆满而导致重启;"
+!!! warning "JavaScript过滤器不应处理查询大批量json数据,负责导致引擎GC Pause"
 
 ##### 常用
 
@@ -23,6 +23,9 @@ next.setProperty("rhapsody:TimeToLive", null)
 
 //移除属性
 next.setProperty("data", null);
+
+//生成uuid
+generateUuid()
 ```
 
 ##### XML操作
@@ -69,13 +72,16 @@ if(input[0].body.length < 512000){
 }
 
 // 遍历json节点
-if(content.EXAM_APPLY != null && content.EXAM_APPLY.length > 0){
-for(var i = 0; i < content.EXAM_APPLY.length; i++){
-	var name_en = contentEXAM_APPLY[i].DATA_ELEMENT_EN_NAME;
-	var value = content.EXAM_APPLY[i].DATA_ELEMENT_VALUE;
-	
-	next.setProperty(name_en, value);
-	}
+var content = JSON.parse(next.text);
+
+var data = content.query.PATHOLOGY_RESULT
+if(data != null && data.length > 0){
+for(var i = 0; i <data.length; i++){
+    var name_en = data[i].DATA_ELEMENT_EN_NAME;
+    var value = data[i].DATA_ELEMENT_VALUE;
+
+    next.setProperty(name_en, value);
+    }
 }
 
 //json节点判断存在及过滤
