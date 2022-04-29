@@ -14,7 +14,7 @@
 
 !!! warning "关键列只针对数据库通信点生效,对于过滤器不起作用"
 
-!!! warning "dbe数据库过滤器不应处理查询大批量数据,负责导致引擎GC Pause"
+!!! warning "dbe数据库过滤器不应处理查询大批量数据,否则导致引擎GC Pause"
 
 ???+ danger highlight blink "除以下支持外,其它需要自行下载jdbc驱动"
 	- [x] **SQL Server**<br>
