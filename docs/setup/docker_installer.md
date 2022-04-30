@@ -26,7 +26,7 @@
 
    - ###### Docker-compose启动(方式二)
 
-     ```dockerfile
+     ```yaml
      # 设置变量
      x-rhapsody-image: &rhapsody-image liaozhiming/rhapsody:6.7.0.220319_beta
      x-rhapsody-version: &version 6.7.0.220319_beta

@@ -1,16 +1,16 @@
-# Centos7安装Docker
+#### Centos7安装Docker
 
-## docker版本列表
+#### docker版本列表
 
 [请点击此链接获得最新docker版本](https://download.docker.com/linux/static/stable/x86_64/)
 
-1. ## 在线命令执行脚本自动安装Docker(需要外网环境)-方式一
+1. ##### 在线命令执行脚本自动安装Docker(需要外网环境)-方式一
 
    ```http
    curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
    ```
    
-2. ## docker安装包下载-方式二
+2. ##### docker安装包下载-方式二
 
    ```python
    # 离线下载:https://download.docker.com/linux/static/stable/x86_64/
@@ -18,7 +18,7 @@
    curl -L https://download.docker.com/linux/static/stable/x86_64/docker-20.10.7.tgz > docker-20.10.7.tgz
    ```
 
-3. ## docker-compose软件包下载
+3. ##### docker-compose软件包下载
 
    ```python
    # 离线下载地址:https://github.com/docker/compose/releases
@@ -28,7 +28,7 @@
    chmod +x /usr/local/bin/docker-compose
    ```
 
-4. ## docker安装
+4. ##### docker安装
 
    ```python
    #1.下载好安装包或使用xshell将已下载好的docker安装包及docker-compose安装包复制到centos7服务器上
@@ -56,7 +56,7 @@
    setenforce 0
    ```
 
-   docker.service配置文件
+   ###### docker.service配置文件
 
    ```python
    # 复制以下内容到docker.service文件;
@@ -95,7 +95,7 @@
    WantedBy=multi-user.target
    ```
 
-5. ## 将用户加入docker组
+5. ##### 将用户加入docker组
 
    ```python
    # 非root用户使用docker，可以将用户加入docker组，避免每次执行都需要加上sudo语句。
@@ -106,7 +106,7 @@
    sudo service docker restart 
    ```
    
-6. ## 设置docker0默认网段,避免与院内ip网段冲突(如果院内网段为172段)
+6. ##### 设置docker0默认网段,避免与院内ip网段冲突(如果院内网段为172段)
 
    ```python
    #route 查看网段信息
@@ -118,7 +118,7 @@
    systemctl restart docker
    ```
 
-7. ## 部署registry简易镜像仓库(建议使用)
+7. ##### 部署registry简易镜像仓库(建议使用)
 
    ```python
    #1.其它docker配置镜像源
@@ -133,7 +133,7 @@
    # Error response from daemon: Get https://172.16.33.140:5000/v2/: http: server gave HTTP response to HTTPS client
    ```
 
-   registry镜像常用命令
+   ###### registry镜像常用命令
 
    ```python
    # 镜像拉取
