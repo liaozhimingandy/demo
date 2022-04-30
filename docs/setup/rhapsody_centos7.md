@@ -2,11 +2,11 @@
 
 #### 安装准备
 
-| 文件                                         | 描述                        |
-| -------------------------------------------- | --------------------------- |
-| centos7                                      | 操作系统                    |
-| rhapsody-6_5_0-linux-x64.sh                  | linux环境下rhapsody集成引擎 |
-| Shenzhen Longhua District Health  Bureau.ohl | license文件                 |
+| 文件                        | 描述                        |
+| --------------------------- | --------------------------- |
+| centos7                     | 操作系统                    |
+| rhapsody-6_5_0-linux-x64.sh | linux环境下rhapsody集成引擎 |
+| xxxx.ohl                    | license文件                 |
 
 #### 安装步骤
 

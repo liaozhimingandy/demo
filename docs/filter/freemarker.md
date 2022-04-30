@@ -96,7 +96,9 @@ ${"   v abcd cc "?trim}
 <#--以单词的 形式 分割字符串-->
 <#list " we are chinese you no diao"?word_list as word>
     ${word}
-</#list><#if word_has_next>,</#if>
+</#list>
+<#--判断是否还有下一个元素-->
+<#if word_has_next>,</#if>
 ?将特殊html标记进行转换,如<转换成<
 ?matches：是否匹配 一个正则
 ```

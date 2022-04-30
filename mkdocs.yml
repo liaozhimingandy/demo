@@ -140,15 +140,15 @@ nav:
 - 环境部署-单机版:
   - windows部署-1: setup/rhapsody_windows.md
   - centos7部署-2: setup/rhapsody_centos7.md
-  # - 容器部署-3: setup/docker_installer.md
+  - 容器部署-3: setup/docker_installer.md
   # - docker安装: setup/docker_setup_centos7.md
-- 常用通讯点:
+- 通讯点:
   - Web Service Client操作: comm/Web_Service_Client.md
-- 常用过滤器:
+- 过滤器:
   - database: filter/database.md
   - JavaScript: filter/JavaScript.md
   - freemarker: filter/freemarker.md
-- 其他:
+- 其它:
   # - 命名规范: other/naming_conventions.md
   - 正则表达式: filter/regexp.md
   - 常见问题: other/FAQ.md
