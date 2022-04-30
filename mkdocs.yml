@@ -1,9 +1,9 @@
 # Project information
-site_name: 'rhapsody使用笔记'
+site_name: 'docs note for rhapsody'
 site_author: 'andy'
 site_description: 'rhapsody文档'
-site_url: 'https://www.alsoapp.com/'
-copyright: Copyright © 2022 andy
+site_url: 'https://www.alsoapp.com/docs-note-rhapsody' # 此处定义url地址
+copyright: docs-note-rhapsody
 
 # 文档说明:https://squidfunk.github.io/mkdocs-material/setup/setting-up-tags/
 
@@ -81,17 +81,17 @@ extra:
   analytics:
     provider: google
     property: !ENV GOOGLE_ANALYTICS_KEY
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/squidfunk
-    - icon: fontawesome/brands/gitter
-      link: https://gitter.im/squidfunk/mkdocs-material
-    - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/r/squidfunk/mkdocs-material/
-    - icon: fontawesome/brands/python
-      link: https://pypi.org/project/mkdocs-material/
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/squidfunk
+  # social:
+  #   - icon: fontawesome/brands/github
+  #     link: https://github.com/squidfunk
+  #   - icon: fontawesome/brands/gitter
+  #     link: https://gitter.im/squidfunk/mkdocs-material
+  #   - icon: fontawesome/brands/docker
+  #     link: https://hub.docker.com/r/squidfunk/mkdocs-material/
+  #   - icon: fontawesome/brands/python
+  #     link: https://pypi.org/project/mkdocs-material/
+  #   - icon: fontawesome/brands/twitter
+  #     link: https://twitter.com/squidfunk
 
 # Extensions
 markdown_extensions:

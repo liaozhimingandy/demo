@@ -1,0 +1,20 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+<div class="md-copyright">
+  {% if config.copyright %}
+    <div class="md-copyright__highlight">
+      {{ config.copyright }} <strong>版权所有 &copy;<span id="years"></span> <a href="{{ config.site_url }}">liaozhiming</a>.</strong>
+      <script type="text/javascript"> 
+        const year = new Date().getFullYear()
+        document.getElementById("years").innerText = year;
+      </script>
+    </div>
+  {% endif %}
+  {% if not config.extra.generator == false %}
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  {% endif %}
+</div>

@@ -8,7 +8,10 @@
   <section class="mdx-container">
     <div class="md-grid md-typeset">
       <div class="mdx-hero">
-        <div class="mdx-hero__content">
+        <div>
+          <img src="assets/images/illustration.png" alt="" width="800" height="auto" draggable="false" align="right">
+        </div>
+        <div class="mdx-hero__content" style="margin-top: 30px;">
           <h1>欢迎使用</h1>
           <p>{{ config.site_description }}</p>
           <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary">
@@ -18,6 +21,9 @@
       </div>
     </div>
   </section>
+  <section>
+    <img src="assets/images/wall.png" width="100%" height="auto">
+  </section>
 {% endblock %}
 {% block content %}{% endblock %}
-{% block footer %}{% endblock %}
+{% block footer %} {% include "partials/footer.html" %}{% endblock %}
