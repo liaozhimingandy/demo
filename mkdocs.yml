@@ -133,6 +133,8 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - pymdownx.snippets
+  - pymdownx.superfences
 
 # Page tree
 nav:
