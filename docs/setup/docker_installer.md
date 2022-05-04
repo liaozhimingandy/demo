@@ -20,14 +20,28 @@
 
    - ###### Docker命令启动(方式一)
 
+=== "docker命令"
+
      ```dockerfile
      docker run -d --name esb-rhapsody-dev -h rhapsody --restart=always  -p 8444:8444 -p 8449:8449 -p 4031:4031 -p 3041:3041 -p 52053-52067:52053-52067 -e TZ="Asia/Shanghai" --add-host grpcservices.api.rhapsody.global:127.0.0.1 liaozhiming/rhapsody:6.7.0.20220503_release
      ```
 
-   - ###### Docker-compose启动(方式二)
+=== "docker-compose命令"
 
-     ```yaml
-     # 设置变量
+```shell
+# 容器启动命令
+docker-compose up -d
+# 容器移除命令
+docker-compose down
+```
+
+
+ 
+
+##### docker-compose配置文件
+
+```yaml
+ # 设置变量
      x-rhapsody-image: &rhapsody-image liaozhiming/rhapsody:6.7.0.220319_beta
      x-rhapsody-version: &version 6.7.0.220319_beta
      x-rhapsody-volumes: &rhapsody-volumes
@@ -104,16 +118,6 @@
          name: data_rhapsody
      # 由于做了资源限制, 并且没有使用swarm, 所以要加上--compatibility参数, 不然会报错
      # docker-compose --compatibility -f gateway.yml up -d
-     ```
-     
-
-##### docker-compose常用命令
-
-```
- # 容器启动命令
- docker-compose up -d
- # 容器移除命令
- docker-compose down
 ```
 
 
