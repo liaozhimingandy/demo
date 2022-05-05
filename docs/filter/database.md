@@ -2,15 +2,15 @@
 
 ##### 解析输入消息
 
-| 字段                  | 含义/示例                                                    |
-| --------------------- | ------------------------------------------------------------ |
-| @id                   | @获得上一个数据集字段数据或者数据库关键列或者存储过程select的值 |
-| EDI消息中的字段使用@  | @PID.PatientName[0].FamilyName.Surname                       |
-| XML消息中的字段使用`  | &#96;/*/queryByParameter/patient/id/value/item[1]/@extension&#96; |
-| 列自上一个结果使用@   | @PatientName                                                 |
-| 存储过程输出参数使用# | #newPatientId                                                |
-| $MessageContent       | 消息主体                                                     |
-| $$tbl_name            | 动态表名/列名;需要开启运行动态查询                           |
+| 字段                      | 含义/示例                                                    |
+| ------------------------- | ------------------------------------------------------------ |
+| **@**id                   | @获得上一个数据集字段数据或者数据库关键列或者存储过程select的值 |
+| EDI消息中的字段使用**@**  | @PID.PatientName[0].FamilyName.Surname                       |
+| XML消息中的字段使用**`**  | &#96;/*/queryByParameter/patient/id/value/item[1]/@extension&#96; |
+| 列自上一个结果使用**@**   | @PatientName                                                 |
+| 存储过程输出参数使用**#** | #newPatientId                                                |
+| **$MessageContent**       | 消息主体                                                     |
+| **$$**tbl_name            | 动态表名/列名;需要开启允许动态查询的配置(**Options**)        |
 
 !!! warning "关键列只针对数据库通信点生效,对于过滤器不起作用"
 
