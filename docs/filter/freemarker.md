@@ -32,7 +32,7 @@ ${inputXML.xml}
 # 为空时则使用默认值
 ${msg!""}或${msg!}
 
-# ?? 判断变量是否存在或对象的属性是否为null
+# ?? 判断变量是否存在或对象的属性或xml节点值是否为null
 
 #如何输出${xxx} 这样的字符串 
 <#noparse>${ccc}</#noparse>
@@ -214,6 +214,10 @@ ${inputXML.message.cda.tid!}
 <#list inputXML.message.section as data>
 ${data.PatientID!}
 </#list>
+
+#针对xml节点值为如下情况时,可使用三元运算符判断是否为null,因为该节点值为空
+eg:<examQuantitativeResultUnit null="yes"/>
+${(inputXML.message.cda.examQuantitativeResultUnit == '')?string('1', '0')}
 ```
 
 #### 解析xml里json数据
@@ -263,6 +267,7 @@ ${input.getProperty("msg_id")!'-1'}
 ```python
 # 三元运算符
 ${(tmp.EMPI_ID == '')?string('0', tmp.EMPI_ID)}
+
 # ?? 判断左侧的变量是否丢失
 <#if !data.message.PATIENT?? && !data.message.PATIENT_BASE??>
 	<#else>
@@ -319,6 +324,13 @@ ${(tmp.EMPI_ID == '')?string('0', tmp.EMPI_ID)}
   x is not 1 nor 2 nor 3 nor 4
 </#if>
 ```
+
+!!! bug "温馨提示"
+	{==
+
+	三元运算符会预处理ture和false后需要选择的内容,故有特殊需求请选择if-else语句
+	
+	==}
 
 #### 数组操作
 
