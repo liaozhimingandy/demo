@@ -72,7 +72,8 @@ theme:
 
 # Plugins
 plugins:
-  - search
+  - search:
+      separator: '[\\s\\u200b\\-]'
   - minify:
       minify_html: true
 

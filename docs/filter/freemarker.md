@@ -63,8 +63,10 @@ eg:${str1?index_of('e')}
 eg:${str1?last_index_of('e')}
 # 字符串截取- ?substring()
 eg:${str1?substring(0,2)}
-# 字符串替换- ?replace()
-eg:${str1?replace('o','dddd')}
+#eg1: 字符串替换- ?replace()
+${str1?replace('o','dddd')}
+# eg2: 替换字符串中特殊字符\,前面使用r''
+${data.DOCUMENT_CONTENT_PDF_URL?replace(r'\', '/')}
 # 字符串分割- ?split()
 eg:<#list str1?split("_") as item>${item}</#list>
 # 去掉前后的空格- ?trim
@@ -260,6 +262,8 @@ ${LookupTables.get('mapping_icd_10').lookup('value', tmp_data.DiagnoseCode, 'val
 ```python
 # 获取消息的属性,默认值
 ${input.getProperty("msg_id")!'-1'}
+# 消息属性null判断
+<#if (input.getProperty("drag_pre")!'') != '' >
 ```
 
 #### 逻辑判断
@@ -380,8 +384,8 @@ eg2:
 #### 正则表达式
 
 ```python
-#字符串正则替换示例
-${inputXML.PatOrdList.ClinicDisease?replace('\n', '<br>', 'r')?replace('"', '”')}
-https://freemarker.sourceforge.io/docs/ref_builtins_string.html#ref_builtin_string_flags
+#eg1: 字符串正则替换示例
+eg1:${inputXML.PatOrdList.ClinicDisease?replace('\n', '<br>', 'r')?replace('"', '”')}
+更多请参考: https://freemarker.sourceforge.io/docs/ref_builtins_string.html#ref_builtin_string_flags
 ```
 
