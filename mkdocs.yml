@@ -155,6 +155,9 @@ nav:
   - freemarker: filter/freemarker.md
 - 其它:
   # - 命名规范: other/naming_conventions.md
+  - 平台证书安装:
+    - 根证书安装: other/cacert-install-root.md
+    - 中间机构证书安装: other/cacert-install-agent.md
   - 正则表达式: filter/regexp.md
   - 常见问题: other/FAQ.md
   # - api操作: other/api.md
