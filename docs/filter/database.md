@@ -66,9 +66,9 @@ jdbc:Cache://10.88.10.72:27077/esb_msg
 
 ```python
 # 驱动名称
-mysql-connector-java-5.1.44-bin.jar
+mysql-connector-java-8.0.21.jar
 # java驱动类名 driver class name
-com.mysql.jdbc.Driver
+com.mysql.cj.jdbc.Driver
 # 连接方法示例
 jdbc:mysql://DatabaseServer/PatientRecords
 ```

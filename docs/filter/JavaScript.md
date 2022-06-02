@@ -176,8 +176,12 @@ decodeBase64(value[, encoding])
 ```javascript
 var tmp_data = JSON.parse(next.text);
 // 构造xml数据
-var data =
-<xml><status_code>200</code><msg>ok</msg><create_datetime>{new Date().toString()}</create_datetime></xml>;
+var data = <xml>
+	<code>200</code>
+	<msg>消息接收成功!</msg>
+	<gmt_rcv>{new Date(parseInt(next.getProperty('InputTime')))}</gmt_rcv>
+	<gmt_created>{new Date().toString()}</gmt_created>
+</xml>;
 next.setText(data, 'UTF8');
 ```
 
@@ -343,8 +347,8 @@ next.setProperty("source_system_code", data["source_system_code"]);
 ###### 当前日期时间自定义格式
 
 ```javascript
-var get_now_datettime_format = function (fmt) {
-  var dateTime=new Date();
+var get_datettime_format = function (obj_date, fmt) {
+  var dateTime=obj_date;
   var o = {
       "M+": dateTime.getMonth() + 1, //月份 
       "d+": dateTime.getDate(), //日 
@@ -367,6 +371,8 @@ var get_now_datettime_format = function (fmt) {
 }
 
 //eg:
-get_now_datettime_format("yyyy-MM-dd HH:mm:ss"),
+log.info(get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
+//eg2:
+log.info(get_datettime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
 ```
 
