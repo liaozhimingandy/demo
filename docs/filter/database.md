@@ -71,5 +71,7 @@ mysql-connector-java-8.0.21.jar
 com.mysql.cj.jdbc.Driver
 # 连接方法示例
 jdbc:mysql://DatabaseServer/PatientRecords
+# 测试语句
+select 1 code
 ```
 

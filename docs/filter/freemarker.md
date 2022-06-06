@@ -251,7 +251,7 @@ ${inputXML.message.SourceAndScheduleInfo[0].SCHEDULE_DOCTOR_ID!}
 
 ```javascript
 ${LookupTables.get('mapping_use_drg').lookup('value_dh', data.UsageCode, 'value')!'默认值'}
-// 使用默认配置文件中的值
+// 使用默认配置文件中的值;建议使用全局变量方式
 ${input.getProperty('ORG_CODE')!LookupTables.get("config").lookup("value", "org_code", "comment")}
 // 是由xml xpath路径节点动态转换
 ${LookupTables.get('mapping_icd_10').lookup('value', tmp_data.DiagnoseCode, 'value_dh')!''}
@@ -265,6 +265,16 @@ ${input.getProperty("msg_id")!'-1'}
 # 消息属性null判断
 <#if (input.getProperty("drag_pre")!'') != '' >
 ```
+
+#### 使用引擎全局变量值
+
+```python
+# 引用引擎全局变量值
+# 此方式不允许全局变量有覆盖值
+${Variables.getValue('social_credit_id')}
+```
+
+!!! warning "此方式不允许全局变量有覆盖值;否则抛出异常"
 
 #### 逻辑判断
 
@@ -352,6 +362,9 @@ eg2:
 <#list status as order_status_is_not_neeed> 
     ${status}<br> 
 </#list>　　
+# 排序
+# eg1: 升序 ?sort_by()
+# eg2: 降序 ?sort_by()?reverse
 ```
 
 #### 带参数的宏
