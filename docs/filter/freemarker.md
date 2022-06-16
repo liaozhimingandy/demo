@@ -212,6 +212,10 @@ ${num?string('#.##')}
 */
 取tid节点值
 ${inputXML.message.cda.tid!}
+# ?size判断xml节点是否有值,可遍历
+<#if inputXML.message.data?size gt 0 >
+<#else>
+</#if>
 # 遍历xml节点
 <#list inputXML.message.section as data>
 ${data.PatientID!}

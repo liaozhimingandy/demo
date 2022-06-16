@@ -16,6 +16,8 @@
 
 !!! warning "dbe数据库过滤器不应处理查询大批量数据,否则导致引擎GC Pause;<br>{==dbe数据库不适用于设置消息属性;设置消息属性请改用dbl数据库过滤器;==}"
 
+!!! tip "允许dbe数据库过滤器查询结果为空不报错,请在dbe数据库过滤器配置xml界面添加下面内容:<br>{==&lt;allowEmptyResult&gt;ture&lt;/allowEmptyResult&gt;==}"
+
 ???+ danger highlight blink "除以下支持外,其它需要自行下载jdbc驱动"
 	- [x] **SQL Server**<br>
     - [x] **Oracle**
