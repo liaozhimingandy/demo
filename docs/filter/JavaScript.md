@@ -1,6 +1,6 @@
 #### JavaScript操作
 
-[参考资料](https://www.w3school.com.cn/js/pro_js_typeconversion.asp)
+[参考资料](https://blog.csdn.net/qq_42842786/article/details/107641415)
 
 !!! warning "JavaScript过滤器不应处理大批量json数据,否则导致引擎GC Pause"
 
@@ -106,6 +106,7 @@ var reg = new RegExp("http://17.{1,128}.pdf");
 //如果匹配到则执行一下语句
 if(reg.test(input[0].text)){
 	var tmp_url = reg.exec(input[0].text);
+    //或使用str.match(reg)
 	next.setProperty("tmp_url", tmp_url);
 	var tmp_data = input[0].text.replace(reg, 'url因为有特殊字符而被替换');
 	}
