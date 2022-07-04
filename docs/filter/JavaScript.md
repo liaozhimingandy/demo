@@ -150,7 +150,6 @@ next.text = '<xml>'+data+'</xml>';
 为输入属性编制索引
 */
 next.indexInputProperty("hip_id");
-
 /*
 为输出属性编制索引
 */
@@ -198,7 +197,6 @@ for(var i=0; i<body.length; i++){
     var errdata = "<err"+i+">"+body[i]+"</err+"+i+">";
     errxml.appendChild(errdata);
 }
-
 //将异常信息输出
 next.setText("<message>"+errxml+"<message>")
 ```
@@ -217,7 +215,6 @@ for(var i = 0; i < content.length(); i++){
 	var arr = str_data.split(":");  
 	data[arr[0].toLowerCase()] = arr[1];  
 	};
-
 next.text = JSON.stringify(data);
 ```
 
@@ -228,11 +225,10 @@ next.text = JSON.stringify(data);
 ```javascript
 // 查找表使用
 if(tmp_dig_code != null && tmp_dig_code.length > 0){
-	var data = lookup("mapping_icd_10",{"value_dh": tmp_dig_code});
-	var dig_code = data.value;
-	var dig_name = data.comment;
-	}
-
+    var data = lookup("mapping_icd_10",{"value_dh": tmp_dig_code});
+    var dig_code = data.value;
+    var dig_name = data.comment;
+}
 //获取环境变量
 var env = lookup("configs", {"key": "env"});
 next.setProperty("env", env.value);
@@ -251,43 +247,37 @@ var sender = list_sender[Math.floor(Math.random()*list_sender.length)];
 ```python
 // 日期格式化转换
 var data = dateChangeFormat('2012/01/02', 'YYYY/MM/dd', 'dd/MM/YYYY');
-	
 // 一个属性添加多个值
 next.addPropertyValue('router:Destination', '@hl7v3')
-	
 // 设置消息体内容
 next.text = ''
 或: next.setText('', 'UTF8');
-	
 getBodySize() //获取body消息体大小
 getFieldAsList(string fieldPath) // 得到字段为重复的数组
 getRepeatCount(string fieldPath) // 得到字段重复次数
 getPropertyNames() // 得到所有属性内容
 getErrors() // 得到错误信息
-
 // 迭代消息属性遍历 
 var properties = readOnlyMessage.getPropertyAsList("PropertyList");
-
-    // Loop through the properties, 
-    var iterator = properties.iterator();
-    while (iterator.hasNext()) {
-        var oneProperty = iterator.next();
-        log.info("One property is: " + oneProperty);
-    }
-
+// Loop through the properties, 
+var iterator = properties.iterator();
+while (iterator.hasNext()) {
+    var oneProperty = iterator.next();
+    log.info("One property is: " + oneProperty);
+}
 // 获取rhapsody全局变量
 getVariable(variableName[, decryptVariable])
-
 // javascript计数器使用
 getCounter(counterName)
 setCounter(counterName, int)
 incCounter(counterName[, increment]) //新增后返回计数器
                                                                               
-//将两个或多个字符的文本组合起来，返回一个新的字符串                                               if(body.lastIndexOf('}') == -1){
-body = body.concat('}');
+//将两个或多个字符的文本组合起来，返回一个新的字符串
+if(body.lastIndexOf('}') == -1){
+	body = body.concat('}');
 }
 //返回字符串中一个子串最后一处出现的索引（从右到左搜索），如果没有匹配项，返回 -1 
-body.lastIndexOf('}')                                                                     
+body.lastIndexOf('}')                                                                   
 ```
 
 ##### JavaScript计数器
@@ -295,7 +285,6 @@ body.lastIndexOf('}')
 ```javascript
 // 递增全局计数器以获取新的唯一ID
 var myUniqueID = incCounter("MyUID", 1);
-
 // 将新ID设置为消息的属性
 next.setProperty("UniqueID", myUniqueID);
 ```
@@ -304,19 +293,13 @@ next.setProperty("UniqueID", myUniqueID);
 
 ```javascript
 try {
-
   //运行代码
-
 } catch(err) {
-
    log.info(err)
    log.info(err.message);
    next.addError(err.message);
-
 }finally{    //可选
-	
 	}
-
 // 获取js抛出的异常
 next.getErrors()
 ```
@@ -370,7 +353,6 @@ var get_datettime_format = function (obj_date, fmt) {
   }
   return fmt;
 }
-
 //eg:
 log.info(get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
 //eg2:

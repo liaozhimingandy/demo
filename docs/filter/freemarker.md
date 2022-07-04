@@ -345,9 +345,7 @@ ${(tmp.EMPI_ID == '')?string('0', tmp.EMPI_ID)}
 
 !!! bug "温馨提示"
 	{==
-
 	三元运算符会预处理ture和false后需要选择的内容,故有特殊需求请选择if-else语句
-	
 	==}
 
 #### 数组操作
@@ -405,4 +403,3 @@ eg2:
 eg1:${inputXML.PatOrdList.ClinicDisease?replace('\n', '<br>', 'r')?replace('"', '”')}
 更多请参考: https://freemarker.sourceforge.io/docs/ref_builtins_string.html#ref_builtin_string_flags
 ```
-
