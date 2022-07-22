@@ -11,9 +11,9 @@ js解析消息体节点请尽量使用input[0].getField(),不使用next.getField
 next一般用于设置属性,设置字段;防止内部死循环;
              
 // 计算代码执行时间
-var dt_start = new Date().valueOf();
-var dt_end = new Date().valueOf();
-log.info(dt_end-dt_start)
+var gmt_start = new Date().valueOf();
+var gmt_end = new Date().valueOf();
+log.info(gmt_end-gmt_start)
 // 动态路由目标动态设置
 next.setProperty("router:Destination", "@router-"+_json.event.eventCode);
 // 或者使用过滤器Property Population设置属性
@@ -30,10 +30,9 @@ generateUuid()
 
 ##### XML操作
 
-```javascript
-// 遍历xml节点示例
-var data = new XML(input[0].xml);
+###### xml添加子节点
 
+```javascript
 // 此处不能从根节点开始遍历
 //去除不是出院的就诊信息
 var data = new XML(input[0].xml);
@@ -44,6 +43,24 @@ for(var i = 0; i < data.AdmInfo.length(); i++){
 		}
 	}
 next.setText(tmp_data, 'UTF8');
+```
+
+###### 获取指定子节点内容
+
+```javascript
+// _xml内容为<message><patient></ENTER_DATE_TIME></patient></message>
+DATA_ELEMENT_EN_NAME = 'ENTER_DATE_TIME';
+if(DATA_ELEMENT_EN_NAME == "ENTER_DATE_TIME" || DATA_ELEMENT_EN_NAME == "MODIFY_DATE_TIME"){
+	if(_xml.patient.child(DATA_ELEMENT_EN_NAME) != null && _xml.patient.child(DATA_ELEMENT_EN_NAME) != ""){
+	log.info(_xml.patient.child(DATA_ELEMENT_EN_NAME)
+			}
+```
+
+###### 其它
+
+```javascript
+// 遍历xml节点示例
+var data = new XML(input[0].xml);
 
 var data =  input[0].xml;
 data.DML_TYPE = 'D'; // 也适用于json消息字段设置
@@ -217,8 +234,6 @@ for(var i = 0; i < content.length(); i++){
 	};
 next.text = JSON.stringify(data);
 ```
-
-
 
 ##### 查找表操作
 
