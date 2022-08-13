@@ -49,11 +49,27 @@ next.setText(tmp_data, 'UTF8');
 
 ```javascript
 // _xml内容为<message><patient></ENTER_DATE_TIME></patient></message>
-DATA_ELEMENT_EN_NAME = 'ENTER_DATE_TIME';
-if(DATA_ELEMENT_EN_NAME == "ENTER_DATE_TIME" || DATA_ELEMENT_EN_NAME == "MODIFY_DATE_TIME"){
+for(var i = 0 ; i < (pat_json.PATIENT).length ;i++){
+	var DATA_ELEMENT_EN_NAME = pat_json.PATIENT[i].DATA_ELEMENT_EN_NAME;	
+	var DATA_ELEMENT_VALUE = "";
+	
+	if(DATA_ELEMENT_EN_NAME == "ENTER_DATE_TIME" || DATA_ELEMENT_EN_NAME == "MODIFY_DATE_TIME"){
 	if(_xml.patient.child(DATA_ELEMENT_EN_NAME) != null && _xml.patient.child(DATA_ELEMENT_EN_NAME) != ""){
-	log.info(_xml.patient.child(DATA_ELEMENT_EN_NAME)
+		var d = _xml.patient.child(DATA_ELEMENT_EN_NAME);
+        // 获取xml节点值的长度,先用获取节点信息,转字符串,取长度
+		if((d.toString()).length == 15){
+			DATA_ELEMENT_VALUE = _xml.patient.child(DATA_ELEMENT_EN_NAME).toString();
+					}else{
+DATA_ELEMENT_VALUE = library.DateStrToGBTime(_xml.patient.child(DATA_ELEMENT_EN_NAME));
+						}
+			}else {
+				DATA_ELEMENT_VALUE="";
 			}
+		}else {
+			DATA_ELEMENT_VALUE = _xml.patient.child(DATA_ELEMENT_EN_NAME).toString();
+		}
+		pat_json.PATIENT[i].DATA_ELEMENT_VALUE = DATA_ELEMENT_VALUE;
+	}
 ```
 
 ###### 其它
