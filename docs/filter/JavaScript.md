@@ -122,6 +122,14 @@ if(data.hasOwnProperty('status_code') && data.status_code != 200){
 	throw "返回内容异常";
 	}
 ```
+##### 其它
+
+```javascript
+// 判断列表是否存在某个指定元素
+var list_append = ['E280401', 'E280402'];
+list_append.indexOf(data.event.eventCode) >=0 //返回true或false
+```
+
 ##### 引用js库
 
 ```javascript

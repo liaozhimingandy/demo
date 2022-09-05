@@ -119,18 +119,13 @@ ${"   v abcd cc "?trim}
 
 ```python
 # 获取当前时间
-${.now?string('yyyyMMdd HHmmss')?replace(' ', 'T')}
 ${.now?string('yyyyMMddHHmmss')}
 # 获取当前时间,精确到毫秒
 ${.now?string('yyyy-MM-dd HH:mm:ss.SSS')}
 #当前日期+-天数;eg:当前时间后15天;
 ${(.now?long+1296000000)?number_to_datetime?string('yyyyMMddHHmmss')}
-# eg2:
-${((inputXML.Response.GetLabOrderListReturn.OrderLists.OrderList[0].OrderSttDat?date('yyyy-MM-dd'))?long+1296000000)?number_to_datetime?string('yyyyMMddHHmmss')}
-# 字符串转日期时间
-${data.creationTime?replace('T', ' ')?datetime('yyyyMMdd HHmmss')?string("yyyy-MM-dd HH:mm:ss")!}
-# 字符串日期时间类型转换
-${data.EnterDateTime?replace('-', '')?replace(' ', 'T')?replace(':', '')}
+# 字符串转日期时间对象
+${data.creationTime?replace('T', ' ')?datetime('yyyyMMdd HHmmss')!}
 ```
 
 #### 数字处理
@@ -162,13 +157,10 @@ MX:小数部分最大X位
 
 ```java
 str_num?number  //字符串转数字
-
 <#assign num = 1234567.8>
-
 ${num?string('0.00')}
 输出为：1234567.80
-如果小数点后不足两位，用 0 代替
-
+如果小数点后不足两位，用0代替
 ${num?string('#.##')}
 输出为：1234567.8
 如果小数点后多余两位，就只保留两位，否则输出实际值
@@ -254,10 +246,7 @@ ${inputXML.message.SourceAndScheduleInfo[0].SCHEDULE_DOCTOR_ID!}
 #### 使用查找表
 
 ```javascript
-${LookupTables.get('mapping_use_drg').lookup('value_dh', data.UsageCode, 'value')!'默认值'}
-// 使用默认配置文件中的值;建议使用全局变量方式
-${input.getProperty('ORG_CODE')!LookupTables.get("config").lookup("value", "org_code", "comment")}
-// 是由xml xpath路径节点动态转换
+// xml xpath路径节点动态转换
 ${LookupTables.get('mapping_icd_10').lookup('value', tmp_data.DiagnoseCode, 'value_dh')!''}
 ```
 
