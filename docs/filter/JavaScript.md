@@ -7,8 +7,8 @@
 ##### 常用
 
 ```javascript
-js解析消息体节点请尽量使用input[0].getField(),不使用next.getField()
-next一般用于设置属性,设置字段;防止内部死循环;
+//js解析消息体节点请尽量使用input[0].getField(),不使用next.getField()
+//next一般用于设置属性,设置字段;防止内部死循环;
              
 // 计算代码执行时间
 var gmt_start = new Date().valueOf();
@@ -43,6 +43,19 @@ for(var i = 0; i < data.AdmInfo.length(); i++){
 		}
 	}
 next.setText(tmp_data, 'UTF8');
+```
+
+###### 构造xml节点
+
+```javascript
+// 构造xml数据
+var data = <xml>
+	<code>200</code>
+	<msg>消息接收成功!</msg>
+	<gmt_rcv>{new Date(parseInt(next.getProperty('InputTime')))}</gmt_rcv>
+	<gmt_created>{new Date().toString()}</gmt_created>
+</xml>;
+next.setText(data, 'UTF8');
 ```
 
 ###### 获取指定子节点内容
@@ -80,6 +93,7 @@ var data = new XML(input[0].xml);
 
 var data =  input[0].xml;
 data.DML_TYPE = 'D'; // 也适用于json消息字段设置
+data.DML_TYPE.@id; //取xml节点的属性内容
 或者
 next.setField('/CACHE/DML_TYPE', 'D');  //也适用于HL7 v2版本消息字段设置
 
@@ -106,7 +120,6 @@ if(input[0].body.length < 512000){
 
 // 遍历json节点
 var content = JSON.parse(next.text);
-
 var data = content.query.PATHOLOGY_RESULT
 if(data != null && data.length > 0){
 for(var i = 0; i <data.length; i++){
@@ -211,22 +224,6 @@ decodeBase64(value[, encoding])
 ```
 
 ##### JSON简单转xml
-
-###### 方式一
-
-```javascript
-var tmp_data = JSON.parse(next.text);
-// 构造xml数据
-var data = <xml>
-	<code>200</code>
-	<msg>消息接收成功!</msg>
-	<gmt_rcv>{new Date(parseInt(next.getProperty('InputTime')))}</gmt_rcv>
-	<gmt_created>{new Date().toString()}</gmt_created>
-</xml>;
-next.setText(data, 'UTF8');
-```
-
-###### 方式二
 
 ```javascript
 //通过getErrors()方法获取错误路由返回的异常数据
