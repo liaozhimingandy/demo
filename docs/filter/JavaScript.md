@@ -164,7 +164,7 @@ if(reg.test(input[0].text)){
 	next.setProperty("tmp_url", tmp_url);
 	var tmp_data = input[0].text.replace(reg, 'url因为有特殊字符而被替换');
 	}
-var data = "<xml><![CDATA["+ tmp_data +"]]></xml>";
+var data =  <xml><data> {tmp_data} </data></xml>;
 next.setText(data ,"UTF8");
 
 // 匹配DIAGNOSIS_ID和01_1之间任意内容
@@ -214,7 +214,7 @@ next.indexOutputProperty("hip_id");
 removeIndexingForProperty(string propertyName)
 ```
 
-##### Base64操作
+##### Base64加密解密操作
 
 ```javascript
 //编码
@@ -339,7 +339,16 @@ try {
 // 获取js抛出的异常
 next.getErrors()
 ```
-##### 常用自定义函数
+##### 公共JavaScript库
+
+###### 使用方法
+
+```javascript
+// 引入js库名称
+var lib = require("NewLibrary");
+// 使用该js库下的对应的方法
+var result = lib.get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
+```
 
 ###### 解析URL参数
 
@@ -358,16 +367,19 @@ function get_url_key(url) {
   }catch(e){}
   return params;
 }
+
+//示例
 var tmp_url = next.getProperty('http:request-url');
 var data = get_url_key(tmp_url);
 next.setProperty("patient_id", data["patient_id"]);
 next.setProperty("source_system_code", data["source_system_code"]);
 ```
 
-###### 当前日期时间自定义格式
+###### 时间格式化
 
 ```javascript
-var get_datettime_format = function (obj_date, fmt) {
+function get_datettime_format(date, format) {
+  var get_datettime_format = function (obj_date, fmt) {
   var dateTime=obj_date;
   var o = {
       "M+": dateTime.getMonth() + 1, //月份 
@@ -379,19 +391,23 @@ var get_datettime_format = function (obj_date, fmt) {
       "S": dateTime.getMilliseconds() //毫秒 
     };
   if (/(y+)/.test(fmt)) {
- 	 fmt = fmt.replace(RegExp.$1, (dateTime.getFullYear() + "").substr(4 - 	RegExp.$1.length));
+     fmt = fmt.replace(RegExp.$1, (dateTime.getFullYear() + "").substr(4 -  RegExp.$1.length));
   }
   for (var k in o){
-	  if (new RegExp("(" + k + ")").test(fmt)) 
-	  {
-	  	fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-	  }
+      if (new RegExp("(" + k + ")").test(fmt)) 
+      {
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      }
   }
   return fmt;
 }
-//eg:
-log.info(get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
+
+return get_datettime_format(date, format);
+}
+
+//eg1:
+log.info(lib.get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
 //eg2:
-log.info(get_datettime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
+log.info(lib.get_datettime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
 ```
 
