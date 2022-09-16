@@ -28,6 +28,8 @@ next.setProperty("data", null);
 generateUuid()
 ```
 
+!!! success "Rhapsody解析大json文本推荐用法:<br>1.使用javascript封装成xml;{==var data = "<xml><![CDATA["+input[0].text+"]]></xml>";==}<br>2.使用freemarker解析json;需配置:{==Escape Characters Mode设为None;==}"
+
 ##### XML操作
 
 ###### xml添加子节点
@@ -164,7 +166,9 @@ if(reg.test(input[0].text)){
 	next.setProperty("tmp_url", tmp_url);
 	var tmp_data = input[0].text.replace(reg, 'url因为有特殊字符而被替换');
 	}
-var data =  <xml><data> {tmp_data} </data></xml>;
+
+// 以下为解析大json字段推荐用法,比fastjson速度更快
+var data = "<xml><![CDATA["+input[0].text+"]]></xml>";
 next.setText(data ,"UTF8");
 
 // 匹配DIAGNOSIS_ID和01_1之间任意内容
