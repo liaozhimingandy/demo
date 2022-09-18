@@ -30,6 +30,28 @@ generateUuid()
 
 !!! success "Rhapsody解析大json文本推荐用法:<br>1.使用javascript封装成xml;{==var data = "<xml><![CDATA["+input[0].text+"]]></xml>";==}<br>2.使用freemarker解析json;需配置:{==Escape Characters Mode设为None;==}"
 
+##### 其它方式解析大文本json示例
+
+gson.jar[下载地址](../files/gson-2.9.1.jar)
+
+fastjson.jar[下载地址](../files/fastjson-1.2.80.jar)
+
+```javascript
+//使用gson解析
+var jsonObject = new com.google.gson.JsonParser()
+var data = jsonObject.parse(input[0].text);
+
+next.setProperty('sender', data.get("sender");
+next.setProperty('event_code', data.get("event").getAsString());
+next.setProperty('sender_id', data.get("id").getAsInt());
+
+//fastjson解析示例
+var obj_json = new com.alibaba.fastjson.JSONObject();
+var data = obj_json.parseObject(input[0].text);
+next.setProperty("tmp_sender_id", data.get("sender").getString("id"));
+next.setText(data.getString("sender"), 'UTF8');
+```
+
 ##### XML操作
 
 ###### xml添加子节点
@@ -108,17 +130,9 @@ next.setField('//observationRequest/componentOf1/encounter/id/item[@root="2.16.1
 ##### JSON操作
 
 ```javascript
-// 文本转json对象
-var data = JSON.parse(input[0].text);
-// json转文本
-next.text = JSON.stringify(data);
 // 删除json节点
 //删除门诊就诊节点信息
 delete data.queryAck.ENCOUNTER_OUTPATIENTS;
-
-//如果消息体< 500k则解析,否则不解析
-if(input[0].body.length < 512000){
-}
 
 // 遍历json节点
 var content = JSON.parse(next.text);
@@ -127,7 +141,7 @@ if(data != null && data.length > 0){
 for(var i = 0; i <data.length; i++){
     var name_en = data[i].DATA_ELEMENT_EN_NAME;
     var value = data[i].DATA_ELEMENT_VALUE;
-
+    
     next.setProperty(name_en, value);
     }
 }
@@ -137,22 +151,6 @@ if(data.hasOwnProperty('status_code') && data.status_code != 200){
 	throw "返回内容异常";
 	}
 ```
-##### 其它
-
-```javascript
-// 判断列表是否存在某个指定元素
-var list_append = ['E280401', 'E280402'];
-list_append.indexOf(data.event.eventCode) >=0 //返回true或false
-```
-
-##### 引用js库
-
-```javascript
-var com_alsoapp_esb_utils = require("com_alsoapp_esb_utils");
-var tmp_url = next.getProperty('http:request-url');
-var data = com_alsoapp_esb_utils.get_url_key(tmp_url);
-```
-
 ##### 正则表达式
 
 ```javascript
@@ -166,10 +164,6 @@ if(reg.test(input[0].text)){
 	next.setProperty("tmp_url", tmp_url);
 	var tmp_data = input[0].text.replace(reg, 'url因为有特殊字符而被替换');
 	}
-
-// 以下为解析大json字段推荐用法,比fastjson速度更快
-var data = "<xml><![CDATA["+input[0].text+"]]></xml>";
-next.setText(data ,"UTF8");
 
 // 匹配DIAGNOSIS_ID和01_1之间任意内容
 DIAGNOSIS_ID(.|\n)*?01_1
@@ -307,17 +301,17 @@ while (iterator.hasNext()) {
 }
 // 获取rhapsody全局变量
 getVariable(variableName[, decryptVariable])
-// javascript计数器使用
-getCounter(counterName)
-setCounter(counterName, int)
-incCounter(counterName[, increment]) //新增后返回计数器
                                                                               
 //将两个或多个字符的文本组合起来，返回一个新的字符串
 if(body.lastIndexOf('}') == -1){
 	body = body.concat('}');
 }
 //返回字符串中一个子串最后一处出现的索引（从右到左搜索），如果没有匹配项，返回 -1 
-body.lastIndexOf('}')                                                                   
+body.lastIndexOf('}')
+
+// 判断列表是否存在某个指定元素
+var list_append = ['E280401', 'E280402'];
+list_append.indexOf(data.event.eventCode) >=0 //返回true或false
 ```
 
 ##### JavaScript计数器
@@ -325,6 +319,8 @@ body.lastIndexOf('}')
 ```javascript
 // 递增全局计数器以获取新的唯一ID
 var myUniqueID = incCounter("MyUID", 1);
+getCounter(counterName)
+setCounter(counterName, int)
 // 将新ID设置为消息的属性
 next.setProperty("UniqueID", myUniqueID);
 ```
