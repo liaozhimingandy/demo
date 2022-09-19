@@ -27,9 +27,8 @@
 
 2. 配置监控引擎
 
-   修改配置文件 dashboard\config\engine.properties
-
    ```
+# 修改配置文件 dashboard\config\engine.properties
    # 分组名称,如果需要多个分组,以此类推,Group.x.Name
    Group.1.Name = Test
    Group.1.Default = true
@@ -46,5 +45,4 @@
    Engine.2.CPUWarning = 75
    Engine.2.CPUAlarm = 95
    ```
-
    
