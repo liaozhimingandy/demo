@@ -34,7 +34,7 @@
    Group.1.Name = Test
    Group.1.Default = true
    
-   # 监控的引擎地址,依次类推,配置多个监控地址 Engine.x.Hostname
+   # 监控的引擎地址,以此类推,配置多个监控地址 Engine.x.Hostname
    Engine.2.Hostname = 172.16.33.147
    Engine.2.Port = 8444
    Engine.2.Username = rest_api_rhapsody_dashboard
