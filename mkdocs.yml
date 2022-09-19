@@ -145,6 +145,7 @@ nav:
   - windows部署: setup/rhapsody_windows.md
   - centos7部署: setup/rhapsody_centos7.md
   - 容器部署: setup/docker_installer.md
+  - Dashboard: setup/rhapsody-dashboard.md
   # - docker安装: setup/docker_setup_centos7.md
 - 通讯点:
   - Web Service Client操作: comm/Web_Service_Client.md

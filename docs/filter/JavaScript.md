@@ -32,9 +32,9 @@ generateUuid()
 
 ##### 其它方式解析大文本json示例
 
-gson.jar[下载地址](../files/gson-2.9.1.jar)
+gson.jar[下载地址](/docs-note-rhapsody/assets/file/gson-2.9.1.jar)
 
-fastjson.jar[下载地址](../files/fastjson-1.2.80.jar)
+fastjson.jar[下载地址](/docs-note-rhapsody/assets/file/fastjson-1.2.80.jar)
 
 ```javascript
 //使用gson解析
