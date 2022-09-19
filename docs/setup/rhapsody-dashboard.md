@@ -1,4 +1,4 @@
-#### Rhapsody Dashboad部署
+#### Rhapsody Dashboard部署
 
 ##### 安装后效果图
 
