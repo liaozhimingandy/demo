@@ -82,10 +82,10 @@ Authorization: Basic YWRtaW5pc3RyYXRvcjphZG1pbg==
 
 ![提交配置文件](/docs-note-rhapsody/assets/images/微信截图_20220513175925.png)
 
-###### 开放对应的项目locker等权限
+###### 开放对应的权限
 
 ```js
-# 需要以下权限;检验使用administrator的角色权限,该权限赋予所有权限
+# 需要以下权限;建议使用administrator的角色权限,该权限赋予所有权限
 Log in to Rhapsody IDE.
 Make changes with IDE.
 Clear configurations.
