@@ -84,8 +84,12 @@ Authorization: Basic YWRtaW5pc3RyYXRvcjphZG1pbg==
 
 ###### 开放对应的项目locker等权限
 
-- ![增加locker范围](/docs-note-rhapsody/assets/images/image-20210324131512953.png)
+```js
+# 需要以下权限;检验使用administrator的角色权限,该权限赋予所有权限
+Log in to Rhapsody IDE.
+Make changes with IDE.
+Clear configurations.
+Load configurations.
+Load configuration REST API.
+```
 
-- ![开放对应的其他权限范围](/docs-note-rhapsody/assets/images/image-20211011075430238.png)
-
-  
