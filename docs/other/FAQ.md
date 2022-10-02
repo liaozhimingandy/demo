@@ -22,9 +22,9 @@ Unable to execute HTTP request: sun.security.validator.ValidatorException: PKIX 
   java SSLPoke 10.254.6.56 443 （接口服务器地址 端口）
   ```
 
-  工具SSLPoke.class下载,请[点击此连接](files/SSLPoke.class)
+  工具SSLPoke.class下载,请[点击此连接](/docs-note-rhapsody/assets/file/SSLPoke.class)
 
-![操作截图](..\imgs\image-20211011074403485.png)
+![操作截图](/docs-note-rhapsody/assets/images/image-20211011074403485.png)
 
 ## 访问https 提示ssl协议握手失败
 
