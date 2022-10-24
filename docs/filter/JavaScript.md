@@ -334,10 +334,12 @@ try {
    log.info(err)
    log.info(err.message);
    next.addError(err.message);
+   // 抛出异常
+   // throw '错误提示'
 }finally{    //可选
 	}
 // 获取js抛出的异常
-next.getErrors()
+next.getErrors() //得到的为list,可取第一个错误提示
 ```
 ##### 公共JavaScript库
 
@@ -409,5 +411,22 @@ return get_datettime_format(date, format);
 log.info(lib.get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
 //eg2:
 log.info(lib.get_datettime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
+```
+
+###### 字符串转时间对象
+
+```json
+function str2date(str) {      
+    var y = str.substring(0,4);      
+    var m = str.substring(5,7)-1;      
+    var d = str.substring(8,10);      
+    var h = str.substring(11,13);      
+    var mm = str.substring(14,16);      
+    var ss = str.substring(17,19);      
+    var time = new Date(y, m, d, h, mm, ss, 0);      
+    return time;      
+}  
+// eg1:
+lib.str2date("2022-10-24").valueOf() //得到时间戳
 ```
 
