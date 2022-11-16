@@ -124,7 +124,16 @@ next.setField('/CACHE/DML_TYPE', 'D');  //也适用于HL7 v2版本消息字段�
 // 若不指定item索引值,则返回所以item的节点用,分割
 var patient_id = next.getField('//controlActProcess/subject/procedureRequest/componentOf1/encounter/subject/patient/id/item[@root="2.16.156.10011.2.5.1.4"]/@extension')
 //设置xpath节点数据
-next.setField('//observationRequest/componentOf1/encounter/id/item[@root="2.16.156.10011.2.5.1.8"]/@extension', next.getProperty('visit_times'))
+next.setField('//observationRequest/componentOf1/encounter/id/item[@root="2.16.156.10011.2.5.1.8"]/@extension', next.getProperty('visit_times'));
+
+// switch操作
+switch(service_code){
+   case "S0001": 
+   case "S0002":
+        break;
+   default:
+        break;
+}       
 ```
 
 ##### JSON操作
@@ -136,15 +145,13 @@ delete data.queryAck.ENCOUNTER_OUTPATIENTS;
 
 // 遍历json节点
 var content = JSON.parse(next.text);
-var data = content.query.PATHOLOGY_RESULT
-if(data != null && data.length > 0){
-for(var i = 0; i <data.length; i++){
-    var name_en = data[i].DATA_ELEMENT_EN_NAME;
-    var value = data[i].DATA_ELEMENT_VALUE;
-    
-    next.setProperty(name_en, value);
-    }
-}
+data.query.LAB_APPLY.forEach(function(item) {
+			 if(item.DATA_ELEMENT_EN_NAME === "BAR_CODE"){
+				SEARCH_CODE = item.DATA_ELEMENT_VALUE;
+				//EMPI_ID = item.DATA_ELEMENT_VALUE;
+				SEARCH_NAME = "条码号";
+				};
+			});
 
 //json节点判断存在及过滤
 if(data.hasOwnProperty('status_code') && data.status_code != 200){
