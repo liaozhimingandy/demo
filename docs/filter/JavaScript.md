@@ -48,8 +48,11 @@ next.setProperty('sender_id', data.get("id").getAsInt());
 //fastjson解析示例
 var obj_json = new com.alibaba.fastjson.JSONObject();
 var data = obj_json.parseObject(input[0].text);
-next.setProperty("tmp_sender_id", data.get("sender").getString("id"));
-next.setText(data.getString("sender"), 'UTF8');
+ORG_CODE = data.get("sender").get("organization").getString("code");
+SEARCH_CODE = data.get("message").get("LAB_REPORT").getJSONObject(11).getString("DATA_ELEMENT_VALUE");
+SEARCH_NAME = data.get("message").get("LAB_REPORT").getJSONObject(12).getString("DATA_ELEMENT_VALUE");
+PK_PATIENT = data.get("message").get("LAB_REPORT").getJSONObject(1).getString("DATA_ELEMENT_VALUE");
+EMPI_ID = data.get("message").get("LAB_REPORT").getJSONObject(2).getString("DATA_ELEMENT_VALUE");
 ```
 
 ##### XML操作
@@ -146,12 +149,12 @@ delete data.queryAck.ENCOUNTER_OUTPATIENTS;
 // 遍历json节点
 var content = JSON.parse(next.text);
 data.query.LAB_APPLY.forEach(function(item) {
-			 if(item.DATA_ELEMENT_EN_NAME === "BAR_CODE"){
-				SEARCH_CODE = item.DATA_ELEMENT_VALUE;
-				//EMPI_ID = item.DATA_ELEMENT_VALUE;
-				SEARCH_NAME = "条码号";
-				};
-			});
+	if(item.DATA_ELEMENT_EN_NAME === "BAR_CODE"){
+        SEARCH_CODE = item.DATA_ELEMENT_VALUE;
+        //EMPI_ID = item.DATA_ELEMENT_VALUE;
+        SEARCH_NAME = "条码号";
+		};
+	});
 
 //json节点判断存在及过滤
 if(data.hasOwnProperty('status_code') && data.status_code != 200){
