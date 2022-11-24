@@ -141,8 +141,8 @@ markdown_extensions:
 # Page tree
 nav:
 - 首页: index.md
-- 环境部署-单机版: system-requirements.md
-  - 系统要求: setup/
+- 环境部署-单机版: 
+  - 系统要求: setup/system-requirements.md
   - 服务端:
     - windows部署: setup/rhapsody_windows.md
     - centos7部署: setup/rhapsody_centos7.md
