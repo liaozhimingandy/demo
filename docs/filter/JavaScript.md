@@ -357,7 +357,7 @@ next.getErrors() //得到的为list,可取第一个错误提示
 
 ```javascript
 // 引入js库名称
-var lib = require("NewLibrary");
+var lib = require("com_alsoapp_esb_utils");
 // 使用该js库下的对应的方法
 var result = lib.get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
 ```
