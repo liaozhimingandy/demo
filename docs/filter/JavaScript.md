@@ -257,6 +257,7 @@ var data = {};
 for(var i = 0; i < content.length(); i++){
 	//log.info(t[i]);
 	//log.info(content[i].name().toString()+':'+content[i].text());
+    // 针对有属性null==yes时报错,请使用content[j].toXMLString(),然后使用字符串截取即可;
 	var str_data = content[i].name().toString()+':'+content[i].text()
 	var arr = str_data.split(":");  
 	data[arr[0].toLowerCase()] = arr[1];  
