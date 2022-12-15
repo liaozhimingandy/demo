@@ -360,7 +360,7 @@ next.getErrors() //得到的为list,可取第一个错误提示
 // 引入js库名称
 var lib = require("com_alsoapp_esb_utils");
 // 使用该js库下的对应的方法
-var result = lib.get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
+var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
 ```
 
 ###### 解析URL参数
@@ -391,8 +391,8 @@ next.setProperty("source_system_code", data["source_system_code"]);
 ###### 时间格式化
 
 ```javascript
-function get_datettime_format(date, format) {
-  var get_datettime_format = function (obj_date, fmt) {
+function get_datetime_format(date, format) {
+  var get_datetime_format = function (obj_date, fmt) {
   var dateTime=obj_date;
   var o = {
       "M+": dateTime.getMonth() + 1, //月份 
@@ -419,9 +419,9 @@ return get_datettime_format(date, format);
 }
 
 //eg1:
-log.info(lib.get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
+log.info(lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
 //eg2:
-log.info(lib.get_datettime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
+log.info(lib.get_datetime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
 ```
 
 ###### 字符串转时间对象
