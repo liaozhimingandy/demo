@@ -415,7 +415,7 @@ function get_datetime_format(date, format) {
   return fmt;
 }
 
-return get_datettime_format(date, format);
+return get_datetime_format(date, format);
 }
 
 //eg1:
