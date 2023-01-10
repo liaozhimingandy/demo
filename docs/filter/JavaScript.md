@@ -48,8 +48,11 @@ next.setProperty('sender_id', data.get("id").getAsInt());
 //fastjson解析示例
 var obj_json = new com.alibaba.fastjson.JSONObject();
 var data = obj_json.parseObject(input[0].text);
-next.setProperty("tmp_sender_id", data.get("sender").getString("id"));
-next.setText(data.getString("sender"), 'UTF8');
+ORG_CODE = data.get("sender").get("organization").getString("code");
+SEARCH_CODE = data.get("message").get("LAB_REPORT").getJSONObject(11).getString("DATA_ELEMENT_VALUE");
+SEARCH_NAME = data.get("message").get("LAB_REPORT").getJSONObject(12).getString("DATA_ELEMENT_VALUE");
+PK_PATIENT = data.get("message").get("LAB_REPORT").getJSONObject(1).getString("DATA_ELEMENT_VALUE");
+EMPI_ID = data.get("message").get("LAB_REPORT").getJSONObject(2).getString("DATA_ELEMENT_VALUE");
 ```
 
 ##### XML操作
@@ -124,7 +127,16 @@ next.setField('/CACHE/DML_TYPE', 'D');  //也适用于HL7 v2版本消息字段�
 // 若不指定item索引值,则返回所以item的节点用,分割
 var patient_id = next.getField('//controlActProcess/subject/procedureRequest/componentOf1/encounter/subject/patient/id/item[@root="2.16.156.10011.2.5.1.4"]/@extension')
 //设置xpath节点数据
-next.setField('//observationRequest/componentOf1/encounter/id/item[@root="2.16.156.10011.2.5.1.8"]/@extension', next.getProperty('visit_times'))
+next.setField('//observationRequest/componentOf1/encounter/id/item[@root="2.16.156.10011.2.5.1.8"]/@extension', next.getProperty('visit_times'));
+
+// switch操作
+switch(service_code){
+   case "S0001": 
+   case "S0002":
+        break;
+   default:
+        break;
+}       
 ```
 
 ##### JSON操作
@@ -136,15 +148,13 @@ delete data.queryAck.ENCOUNTER_OUTPATIENTS;
 
 // 遍历json节点
 var content = JSON.parse(next.text);
-var data = content.query.PATHOLOGY_RESULT
-if(data != null && data.length > 0){
-for(var i = 0; i <data.length; i++){
-    var name_en = data[i].DATA_ELEMENT_EN_NAME;
-    var value = data[i].DATA_ELEMENT_VALUE;
-    
-    next.setProperty(name_en, value);
-    }
-}
+data.query.LAB_APPLY.forEach(function(item) {
+	if(item.DATA_ELEMENT_EN_NAME === "BAR_CODE"){
+        SEARCH_CODE = item.DATA_ELEMENT_VALUE;
+        //EMPI_ID = item.DATA_ELEMENT_VALUE;
+        SEARCH_NAME = "条码号";
+		};
+	});
 
 //json节点判断存在及过滤
 if(data.hasOwnProperty('status_code') && data.status_code != 200){
@@ -247,6 +257,7 @@ var data = {};
 for(var i = 0; i < content.length(); i++){
 	//log.info(t[i]);
 	//log.info(content[i].name().toString()+':'+content[i].text());
+    // 也可使用content[j].toXMLString()得到在字符串节点,然后使用字符串截取即可;
 	var str_data = content[i].name().toString()+':'+content[i].text()
 	var arr = str_data.split(":");  
 	data[arr[0].toLowerCase()] = arr[1];  
@@ -347,9 +358,9 @@ next.getErrors() //得到的为list,可取第一个错误提示
 
 ```javascript
 // 引入js库名称
-var lib = require("NewLibrary");
+var lib = require("com_alsoapp_esb_utils");
 // 使用该js库下的对应的方法
-var result = lib.get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
+var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
 ```
 
 ###### 解析URL参数
@@ -380,8 +391,8 @@ next.setProperty("source_system_code", data["source_system_code"]);
 ###### 时间格式化
 
 ```javascript
-function get_datettime_format(date, format) {
-  var get_datettime_format = function (obj_date, fmt) {
+function get_datetime_format(date, format) {
+  var get_datetime_format = function (obj_date, fmt) {
   var dateTime=obj_date;
   var o = {
       "M+": dateTime.getMonth() + 1, //月份 
@@ -404,13 +415,13 @@ function get_datettime_format(date, format) {
   return fmt;
 }
 
-return get_datettime_format(date, format);
+return get_datetime_format(date, format);
 }
 
 //eg1:
-log.info(lib.get_datettime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
+log.info(lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
 //eg2:
-log.info(lib.get_datettime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
+log.info(lib.get_datetime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
 ```
 
 ###### 字符串转时间对象
