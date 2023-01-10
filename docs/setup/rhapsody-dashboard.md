@@ -24,7 +24,6 @@
    # 将zh_CN.csv汉化文件放置到程序安装目录下以下路径
    # dashboard\locale
    ```
-
 2. 配置监控引擎
 
    ```python
@@ -45,4 +44,3 @@
    Engine.2.CPUWarning = 75
    Engine.2.CPUAlarm = 95
    ```
-   
