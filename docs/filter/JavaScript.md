@@ -225,8 +225,8 @@ removeIndexingForProperty(string propertyName)
 ##### Base64加密解密操作
 
 ```javascript
-//编码
-encodeBase64(base64encodedString)
+//编码,第二个参数为是否多行
+encodeBase64(input[0].text, false, "UTF-8")
 //解码
 decodeBase64(value[, encoding])
 ```
