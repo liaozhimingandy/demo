@@ -225,7 +225,7 @@ ${(inputXML.message.cda.examQuantitativeResultUnit == '')?string('1', '0')}
 ```python
 # 1.在javascript中
 var data = "<xml><![CDATA["+input[0].text+"]]></xml>";
-next.setText(data ,"UTF8");
+next.setText(data ,"UTF-8");
 
 # 2.freemarker中使用函数解析json
 <#assign data=parseJSON(tmp_data) />

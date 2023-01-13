@@ -69,7 +69,7 @@ for(var i = 0; i < data.AdmInfo.length(); i++){
 		tmp_data.appendChild(data.AdmInfo[i]);
 		}
 	}
-next.setText(tmp_data, 'UTF8');
+next.setText(tmp_data, 'UTF-8');
 ```
 
 ###### 构造xml节点
@@ -82,7 +82,7 @@ var data = <xml>
 	<gmt_rcv>{new Date(parseInt(next.getProperty('InputTime')))}</gmt_rcv>
 	<gmt_created>{new Date().toString()}</gmt_created>
 </xml>;
-next.setText(data, 'UTF8');
+next.setText(data, 'UTF-8');
 ```
 
 ###### 获取指定子节点内容
@@ -296,7 +296,7 @@ var data = dateChangeFormat('2012/01/02', 'YYYY/MM/dd', 'dd/MM/YYYY');
 next.addPropertyValue('router:Destination', '@hl7v3')
 // 设置消息体内容
 next.text = ''
-或: next.setText('', 'UTF8');
+或: next.setText('', 'UTF-8');
 getBodySize() //获取body消息体大小
 getFieldAsList(string fieldPath) // 得到字段为重复的数组
 getRepeatCount(string fieldPath) // 得到字段重复次数
