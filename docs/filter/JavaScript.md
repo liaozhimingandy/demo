@@ -231,6 +231,26 @@ encodeBase64(input[0].text, false, "UTF-8")
 decodeBase64(value[, encoding])
 ```
 
+##### 瞬态对象
+
+```javascript
+// 设置状态
+// eg1: 简单设置一个状态
+transientState.setState('key', 'val');
+// eg2: 设置一个带有过期时间的状态
+transientState.setState('key', 'val', {
+expires: '2023-05-23T19:00:00z'
+});
+
+// 获取状态
+// eg1: 简单获取一个状态
+next.setProperty('Prop' , transientState.getState('key'));
+
+// 同时获取和设置状态
+//eg1: 获取旧值后设置新值
+var value = transientState.getAndSetState('key','val');
+```
+
 ##### JSON简单转xml
 
 ```javascript
@@ -326,6 +346,8 @@ list_append.indexOf(data.event.eventCode) >=0 //返回true或false
 ```
 
 ##### JavaScript计数器
+
+!!! warning "仅限于数值类型"
 
 ```javascript
 // 递增全局计数器以获取新的唯一ID
