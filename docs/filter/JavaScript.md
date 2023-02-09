@@ -450,16 +450,16 @@ log.info(lib.get_datetime_format(new Date(parseInt(next.getProperty("InputTime")
 
 ```json
 function str2date(str) {      
-    var y = str.substring(0,4);      
-    var m = str.substring(5,7)-1;      
-    var d = str.substring(8,10);      
-    var h = str.substring(11,13);      
-    var mm = str.substring(14,16);      
-    var ss = str.substring(17,19);      
+    var y = str.substring(0, 4);      
+    var m = str.substring(4, 6);      
+    var d = str.substring(6, 8);      
+    var h = str.substring(8, 10);      
+    var mm = str.substring(10, 12); 
+    var ss = str.substring(12, 14);      
     var time = new Date(y, m, d, h, mm, ss, 0);      
     return time;      
 }  
 // eg1:
-lib.str2date("2022-10-24").valueOf() //得到时间戳
+lib.str2date("20221024010101").valueOf() //得到时间戳
 ```
 
