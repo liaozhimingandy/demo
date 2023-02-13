@@ -245,6 +245,25 @@ ${inputXML.message.SourceAndScheduleInfo[0].SCHEDULE_DOCTOR_ID!}
 </#if>
 ```
 
+#### 带有命名空间xml解析
+
+[freemarker官方参考文档](https://freemarker.apache.org/docs/xgui_imperative_learn.html#xgui_imperative_learn_xpath)
+
+```python
+# 在实践中,遇到解析带命名空间的xml节点,和普通xml解析不同的是需要顶端定义命名空间
+#eg: 取下面节点id的属性extension值
+<RCMR_IN000002UV02 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" xsi:schemaLocation="urn:hl7-org:v3 ../multicacheschemas/RCMR_IN000002UV02.xsd">
+<!-- id-消息流水号 -->
+<id root="2.16.156.10011.2.5.1.1" extension="8122bc24-6e0d-4599-b61a-664bc58d0462"/>
+</RCMR_IN000002UV02>
+# 用法:
+# 1.freemarker 首行添加命名空间说明
+# <#ftl ns_prefixes={"e":"urn:hl7-org:v3"}>
+# 2.正确取值
+${inputXML["/*/e:id/@extension"]}  # 输出: 8122bc24-6e0d-4599-b61a-664bc58d0462
+# 更多灵活用法参考freemarker官方文档及rhapsody文档
+```
+
 #### 使用查找表
 
 ```javascript

@@ -15,7 +15,7 @@ var gmt_start = new Date().valueOf();
 var gmt_end = new Date().valueOf();
 log.info(gmt_end-gmt_start)
 // 动态路由目标动态设置
-next.setProperty("router:Destination", "@router-"+_json.event.eventCode);
+next.setProperty("router:Destination", "@com.alsoapp.esb.rhapsody.router."+_json.event.eventCode);
 // 或者使用过滤器Property Population设置属性
 next.setProperty("rhapsody:consumerOperation", "对方web service接口方法名");
 // 禁用消息超时
