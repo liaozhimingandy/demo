@@ -34,6 +34,9 @@ ${inputXML.xml}
 # 为空时则使用默认值
 ${msg!""}或${msg!}
 
+# xml节点兼容性写法,当该节点不存在时取空字符串
+${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
+
 # ?? 判断变量是否存在或对象的属性或xml节点值是否为null
 
 #如何输出${xxx} 这样的字符串 
@@ -128,6 +131,8 @@ ${.now?string('yyyy-MM-dd HH:mm:ss.SSS')}
 ${(.now?long+1296000000)?number_to_datetime?string('yyyyMMddHHmmss')}
 # 字符串转日期时间对象
 ${data.creationTime?replace('T', ' ')?datetime('yyyyMMdd HHmmss')!}
+# 格式 yyyy-MM-DDTHH:mm:ss+08:00
+${.now?string('yyyy-MM-dd HH:mm:ss')?replace('T', '')}+08:00
 ```
 
 #### 数字处理
