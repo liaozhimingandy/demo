@@ -129,8 +129,8 @@ ${.now?string('yyyyMMddHHmmss')}
 ${.now?string('yyyy-MM-dd HH:mm:ss.SSS')}
 #当前日期+-天数;eg:当前时间后15天;
 ${(.now?long+1296000000)?number_to_datetime?string('yyyyMMddHHmmss')}
-# 字符串转日期时间对象
-${data.creationTime?replace('T', ' ')?datetime('yyyyMMdd HHmmss')!}
+# 字符串转标准日期时间对象
+${data.creationTime?replace(' ', 'T')?datetime('yyyyMMdd HHmmss')!}
 # 格式 yyyy-MM-DDTHH:mm:ss+08:00
 ${.now?string('yyyy-MM-dd HH:mm:ss')?replace('T', '')}+08:00
 ```
