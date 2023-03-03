@@ -7,7 +7,7 @@
 | Rhapsody全局变量                                             | $(myVariable)                                                |
 | 获得上一个数据集字段数据或者数据库关键列或者存储过程select的值 | @id                                                          |
 | EDI消息中的字段使用@                                         | @PID.PatientName[0].FamilyName.Surname                       |
-| XML消息中的字段使用`                                         | &#96;/*/queryByParameter/patient/id/value/item[1]/@extension&#96; |
+| XML消息中的字段使用`                                         | &#96;/*/queryByParameter/patient/id/value/item[索引值+1]/@extension&#96; |
 | 列自上一个结果使用@                                          | @PatientName                                                 |
 | 存储过程输出参数使用#                                        | #newPatientId                                                |
 | 消息主体                                                     | **$messageContent**                                          |
