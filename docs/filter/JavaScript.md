@@ -147,14 +147,13 @@ switch(service_code){
 delete data.queryAck.ENCOUNTER_OUTPATIENTS;
 
 // 遍历json节点
-var content = JSON.parse(next.text);
-data.query.LAB_APPLY.forEach(function(item) {
-	if(item.DATA_ELEMENT_EN_NAME === "BAR_CODE"){
-        SEARCH_CODE = item.DATA_ELEMENT_VALUE;
-        //EMPI_ID = item.DATA_ELEMENT_VALUE;
-        SEARCH_NAME = "条码号";
-		};
-	});
+data.message.PATIENT.forEach(function(item) {
+if(item['DATA_ELEMENT_EN_NAME'].indexOf('DATE') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('TIME') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('GMT') > -1){
+		content[item['DATA_ELEMENT_EN_NAME']] = lib.get_datetime_format(lib.str2date(item.DATA_ELEMENT_VALUE.replace('T', '').valueOf()), "yyyy-MM-dd HH:mm:ss");
+		}else{
+		content[item['DATA_ELEMENT_EN_NAME']] = item.DATA_ELEMENT_VALUE;
+        }
+    });
 
 //json节点判断存在及过滤
 if(data.hasOwnProperty('status_code') && data.status_code != 200){
