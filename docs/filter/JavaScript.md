@@ -449,15 +449,15 @@ log.info(lib.get_datetime_format(new Date(parseInt(next.getProperty("InputTime")
 
 ```json
 function str2date(str) {      
-    var y = str.substring(0, 4);      
-    var m = str.substring(4, 6);      
-    var d = str.substring(6, 8);      
-    var h = str.substring(8, 10);      
-    var mm = str.substring(10, 12); 
-    var ss = str.substring(12, 14);      
+    var y = Number(str.substring(0, 4));      
+    var m = Number(str.substring(4, 6))-1;      
+    var d = Number(str.substring(6, 8));      
+    var h = Number(str.substring(8, 10));      
+    var mm = Number(str.substring(10, 12)); 
+    var ss = Number(str.substring(12, 14));      
     var time = new Date(y, m, d, h, mm, ss, 0);      
     return time;      
-}  
+}   
 // eg1:
 lib.str2date("20221024010101").valueOf() //得到时间戳
 ```
