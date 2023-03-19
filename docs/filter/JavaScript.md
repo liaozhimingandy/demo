@@ -146,7 +146,7 @@ switch(service_code){
 //删除门诊就诊节点信息
 delete data.queryAck.ENCOUNTER_OUTPATIENTS;
 
-// 遍历json节点
+// 遍历json节点,rhapsody 6.5之前版本不支持该版本,请采用下面的方式二
 data.message.PATIENT.forEach(function(item) {
 if(item['DATA_ELEMENT_EN_NAME'].indexOf('DATE') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('TIME') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('GMT') > -1){
 		content[item['DATA_ELEMENT_EN_NAME']] = lib.get_datetime_format(lib.str2date(item.DATA_ELEMENT_VALUE.replace('T', '').valueOf()), "yyyy-MM-dd HH:mm:ss");
@@ -154,6 +154,11 @@ if(item['DATA_ELEMENT_EN_NAME'].indexOf('DATE') > -1 || item['DATA_ELEMENT_EN_NA
 		content[item['DATA_ELEMENT_EN_NAME']] = item.DATA_ELEMENT_VALUE;
         }
     });
+
+// 遍历json节点方式二
+for(item in PATIENT){
+	next.setProperty(PATIENT[item].DATA_ELEMENT_EN_NAME, PATIENT[item].DATA_ELEMENT_VALUE);
+}
 
 //json节点判断存在及过滤
 if(data.hasOwnProperty('status_code') && data.status_code != 200){
