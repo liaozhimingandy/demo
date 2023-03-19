@@ -216,8 +216,8 @@ ${inputXML.message.cda.tid!}
 <#else>
 </#if>
 # 遍历xml节点
-<#list inputXML.message.section as data>
-${data.PatientID!}
+<#list inputXML.message.section as item>
+${item.PatientID!}
 </#list>
 
 #针对xml节点值为如下情况时,可使用三元运算符判断是否为null,因为该节点值为空
@@ -239,9 +239,9 @@ next.setText(data ,"UTF-8");
 ${inputXML.message.SourceAndScheduleInfo[0].SCHEDULE_DOCTOR_ID!}
 
 # 排序后遍历json节点内容
-<#list data.EXAM_APPLY?sort_by("DATA_ELEMENT_ID") as data>
-			<#if data.DATA_ELEMENT_EN_NAME == 'LAB_APPLY_NO'>
-			<LabNo>${data.DATA_ELEMENT_VALUE!}</LabNo>
+<#list data.EXAM_APPLY?sort_by("DATA_ELEMENT_ID") as item>
+			<#if item.DATA_ELEMENT_EN_NAME == 'LAB_APPLY_NO'>
+			<LabNo>${item.DATA_ELEMENT_VALUE!}</LabNo>
 			</#if>
 </#list>
 
@@ -312,13 +312,13 @@ ${(tmp.EMPI_ID == '')?string('0', tmp.EMPI_ID)}
 </#if>
 # 示例2
 #?reverse使用同sort相同。reverse还可以同sort_by一起使用
-<#list data.ORDER_OUTPAT?sort_by("DATA_ELEMENT_ID") as data>
-		<#if data.DATA_ELEMENT_EN_NAME == 'PATIENT_ID'>
-		<PatientId>${data.DATA_ELEMENT_VALUE!}</PatientId>
+<#list data.ORDER_OUTPAT?sort_by("DATA_ELEMENT_ID") as item>
+		<#if item.DATA_ELEMENT_EN_NAME == 'PATIENT_ID'>
+		<PatientId>${item.DATA_ELEMENT_VALUE!}</PatientId>
         <#break> 
 		</#if>
-		<#if data.DATA_ELEMENT_EN_NAME == 'ENCOUNTER_ID'>
-		<IDNo>${data.DATA_ELEMENT_VALUE!}</IDNo>
+		<#if item.DATA_ELEMENT_EN_NAME == 'ENCOUNTER_ID'>
+		<IDNo>${item.DATA_ELEMENT_VALUE!}</IDNo>
 		</#if>
 </#list>
 
