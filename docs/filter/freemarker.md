@@ -45,8 +45,7 @@ ${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
 
 !!! success  "xml特殊字符处理" 
 
-	xml包裹特殊字符:<B style="color:red"><![CDATA[]]></B><br>
-  xml特殊字符需要转义,转义规则:参考通讯点->Web Service Client操作->转义提示
+	xml包裹特殊字符:<B style="color:red"><![CDATA[]]></B><br>xml特殊字符需要转义,转义规则:参考通讯点->Web Service Client操作->转义提示
 
 !!! success  "去掉换行空白符" 
 
