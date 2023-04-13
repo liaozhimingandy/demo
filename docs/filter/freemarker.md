@@ -312,13 +312,13 @@ ${(tmp.EMPI_ID == '')?string('0', tmp.EMPI_ID)}
 </#if>
 # 示例2
 #?reverse使用同sort相同。reverse还可以同sort_by一起使用
-<#list data.ORDER_OUTPAT?sort_by("DATA_ELEMENT_ID") as item>
-		<#if item.DATA_ELEMENT_EN_NAME == 'PATIENT_ID'>
-		<PatientId>${item.DATA_ELEMENT_VALUE!}</PatientId>
+<#list data.ORDER_OUTPAT?sort_by("DATA_ELEMENT_ID") as e>
+		<#if e.DATA_ELEMENT_EN_NAME == 'PATIENT_ID'>
+		<PatientId>${e.DATA_ELEMENT_VALUE!}</PatientId>
         <#break> 
 		</#if>
-		<#if item.DATA_ELEMENT_EN_NAME == 'ENCOUNTER_ID'>
-		<IDNo>${item.DATA_ELEMENT_VALUE!}</IDNo>
+		<#if e.DATA_ELEMENT_EN_NAME == 'ENCOUNTER_ID'>
+		<IDNo>${e.DATA_ELEMENT_VALUE!}</IDNo>
 		</#if>
 </#list>
 
