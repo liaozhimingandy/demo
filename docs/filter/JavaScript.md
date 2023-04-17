@@ -448,6 +448,8 @@ return get_datetime_format(date, format);
 log.info(lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
 //eg2:
 log.info(lib.get_datetime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
+// eg3: 标准时间格式: ISO 8601
+log.info(lib.get_datetime_format(new Date(), "yyyy-MM-ddTHH:mm:ss+08:00"));
 ```
 
 ###### 字符串转时间对象
