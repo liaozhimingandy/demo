@@ -76,23 +76,10 @@ plugins:
       separator: '[\\s\\u200b\\-]'
   - minify:
       minify_html: true
-
-# Customization
-extra:
-  analytics:
-    provider: google
-    property: !ENV GOOGLE_ANALYTICS_KEY
-  # social:
-  #   - icon: fontawesome/brands/github
-  #     link: https://github.com/squidfunk
-  #   - icon: fontawesome/brands/gitter
-  #     link: https://gitter.im/squidfunk/mkdocs-material
-  #   - icon: fontawesome/brands/docker
-  #     link: https://hub.docker.com/r/squidfunk/mkdocs-material/
-  #   - icon: fontawesome/brands/python
-  #     link: https://pypi.org/project/mkdocs-material/
-  #   - icon: fontawesome/brands/twitter
-  #     link: https://twitter.com/squidfunk
+  - git-revision-date-localized:
+      type: iso_datetime
+      enable_creation_date: false
+      fallback_to_build_date: true
 
 # Extensions
 markdown_extensions:
@@ -169,3 +156,42 @@ nav:
   - 正则表达式: filter/regexp.md
   - 常见问题: other/FAQ.md
   # - api操作: other/api.md39615
+
+
+  # Customization
+extra:
+  analytics: 
+    # provider: google
+    # property: G-XXXXXXXXXX  #你的Google Analytics ID
+    feedback:
+      title: 此页面有帮助吗？
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            谢谢你的反馈！
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">feedback form</a>.
+    
+  consent:
+    title: Cookie consent
+    description: >- 
+      我们也使用cookies来识别您的重复访问和偏好来衡量我们文档的有效性以及用户是否找到他们要找的东西。
+      如果你同意,你可以帮助我们让我们的网站更好
+
+  # social:
+  #   - icon: fontawesome/brands/github
+  #     link: https://github.com/squidfunk
+  #   - icon: fontawesome/brands/gitter
+  #     link: https://gitter.im/squidfunk/mkdocs-material
+  #   - icon: fontawesome/brands/docker
+  #     link: https://hub.docker.com/r/squidfunk/mkdocs-material/
+  #   - icon: fontawesome/brands/python
+  #     link: https://pypi.org/project/mkdocs-material/
+  #   - icon: fontawesome/brands/twitter
+  #     link: https://twitter.com/squidfunk
