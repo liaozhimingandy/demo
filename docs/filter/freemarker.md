@@ -24,21 +24,17 @@ FreeMarker 是一款 模板引擎： 即一种基于模板和要改变的数据�
   <#local null = 'null'> ;
   <#return str?eval>
 </#function>
-<#assign tmp_data>
+<#assign content>
 ${inputXML.xml}
 </#assign>
-
-<#-- 使用函数 -->
-<#assign data=parseJSON(tmp_data) />
+<#-- 使用函数,2.3.31版本以下,暂时使用替换特殊字符防止json解析失败 -->
+<#assign data=parseJSON(content?replace('\\/', '')) />
 
 # 为空时则使用默认值
 ${msg!""}或${msg!}
-
 # xml节点兼容性写法,当该节点不存在时取空字符串
 ${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
-
 # ?? 判断变量是否存在或对象的属性或xml节点值是否为null
-
 #如何输出${xxx} 这样的字符串 
 <#noparse>${ccc}</#noparse>
 ```
