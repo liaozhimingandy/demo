@@ -455,7 +455,11 @@ log.info(lib.get_datetime_format(new Date(), "yyyy-MM-ddTHH:mm:ss+08:00"));
 ###### 字符串转时间对象
 
 ```json
-function str2date(str) {      
+function str2date(str) {
+    /*
+    字符串转时间对象
+    str: 字符串,形如: 20221024010101
+    */
     var y = Number(str.substring(0, 4));      
     var m = Number(str.substring(4, 6))-1;      
     var d = Number(str.substring(6, 8));      
@@ -465,7 +469,9 @@ function str2date(str) {
     var time = new Date(y, m, d, h, mm, ss, 0);      
     return time;      
 }   
-// eg1:
-lib.str2date("20221024010101").valueOf() //得到时间戳
+// eg1: 得到时间对象
+lib.str2date("20221024010101")
+// eg2: 得到时间戳
+lib.str2date("20221024010101").valueOf() 
 ```
 
