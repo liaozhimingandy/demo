@@ -2,11 +2,11 @@
 
 ##### 安装准备
 
-| 文件                          | 描述             |
-| ----------------------------- | ---------------- |
-| docker.tar                    | docker环境       |
-| rhapsody_6.7.210901_alpha.tar | rhapsody镜像文件 |
-| xxxx.ohl                      | license文件      |
+| 文件         | 描述             |
+| ------------ | ---------------- |
+| docker.tar   | docker环境       |
+| rhapsody.tar | rhapsody镜像文件 |
+| xxxx.ohl     | license文件      |
 
 前提有docker环境;centos7下安装docker请点击[此链接](docker_setup_centos7.md)
 
@@ -21,7 +21,7 @@
 === "docker命令"
 
      ```dockerfile
-     docker run -d --name esb-rhapsody-dev -h rhapsody --restart=always  -p 8444:8444 -p 8449:8449 -p 4031:4031 -p 3041:3041 -p 52053-52067:52053-52067 -e TZ="Asia/Shanghai" --add-host grpcservices.api.rhapsody.global:127.0.0.1 liaozhiming/rhapsody:6.7.0.20220503_release
+     docker run -d --name esb-rhapsody-dev -h rhapsody --restart=unless-stopped  -p 8444:8444 -p 8449:8449 -p 4031:4031 -p 3041:3041 -p 52053-52067:52053-52067 -e TZ="Asia/Shanghai" --add-host grpcservices.api.rhapsody.global:127.0.0.1 liaozhiming/rhapsody
      ```
 
 === "docker-compose命令"
@@ -38,13 +38,14 @@
 ##### docker-compose配置文件
 
 ??? ":material-file: docker-compose.yaml"
+
     ```yaml
     x-rhapsody-image: &rhapsody-image liaozhiming/rhapsody
     x-rhapsody-volumes: &rhapsody-volumes
       - data_rhapsody:/home/rhapsody/rhapsody/rhapsody-engine-6/rhapsody/data
       # ldap统一认证,根据需要开启
       # - ldap.properties:/home/rhapsody/rhapsody/rhapsody-engine-6/rhapsody/data/users/ldap.properties
-    
+      
     version: '3.8'
     services:
         rhapsody-server:
