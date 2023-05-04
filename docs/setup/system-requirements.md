@@ -12,10 +12,20 @@
 ##### 最低硬件建议
 
 - Windows® Server或Linux(推荐)
+
 - 64位操作系统
+
 - 8核16线程
+
 - 16GB内存(RAM)和 8GB 堆内存(heap)
+
 - 40GB磁盘空间用于操作系统和应用程序(RAID1)
+
 - 用于数据存储(RAID10)的1TB磁盘空间(磁盘io延迟<4)
+
+  ```sh
+  # linux内置命令,重点查看指标: r_await, w_await
+  iostat -x 2
+  ```
 
 ​	<a href="https://www.alsoapp.com/docs-rhapsody/6.9.1/en/hardware-requirements.html" target="_blank">点击此链接查看官方文档</a>

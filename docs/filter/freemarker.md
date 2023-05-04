@@ -32,7 +32,7 @@ ${inputXML.xml}
 
 # 为空时则使用默认值
 ${msg!""}或${msg!}
-# xml节点兼容性写法,当该节点不存在时取空字符串
+# xml节点兼容性写法,当该节点不存在时取空字符串,推荐
 ${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
 # ?? 判断变量是否存在或对象的属性或xml节点值是否为null
 #如何输出${xxx} 这样的字符串 
@@ -257,12 +257,19 @@ ${inputXML.message.SourceAndScheduleInfo[0].SCHEDULE_DOCTOR_ID!}
 <!-- id-消息流水号 -->
 <id root="2.16.156.10011.2.5.1.1" extension="8122bc24-6e0d-4599-b61a-664bc58d0462"/>
 </RCMR_IN000002UV02>
-# 用法:
-# 1.freemarker 首行添加命名空间说明
+# 示例-1:
+# 1.freemarker 首行添加命名空间说明;根据需要可以添加多个命名空间
 # <#ftl ns_prefixes={"e":"urn:hl7-org:v3"}>
 # 2.正确取值
 ${inputXML["/*/e:id/@extension"]}  # 输出: 8122bc24-6e0d-4599-b61a-664bc58d0462
 # 更多灵活用法参考freemarker官方文档及rhapsody文档
+
+# 示例-2:
+# 1.freemarker 首行添加命名空间说明,以CDA为例(C0034-入院记录)
+<#ftl
+ns_prefixes={"mydefault":"urn:hl7-org:v3","mif":"urn:hl7-org:v3/mif","xsi":"http://www.w3.org/2001/XMLSchema-instance"}>
+# 2.正确取值
+{inputXML["/mydefault:ClinicalDocument/mydefault:component/mydefault:structuredBody/mydefault:component[7]/mydefault:section/mydefault:entry/mydefault:observation/mydefault:value/@xsi:type"]}
 ```
 
 #### 使用查找表
@@ -308,14 +315,10 @@ ${(tmp.EMPI_ID == '')?string('0', tmp.EMPI_ID)}
 </#if>
 # 示例2
 #?reverse使用同sort相同。reverse还可以同sort_by一起使用
-<#list data.ORDER_OUTPAT?sort_by("DATA_ELEMENT_ID") as e>
-		<#if e.DATA_ELEMENT_EN_NAME == 'PATIENT_ID'>
-		<PatientId>${e.DATA_ELEMENT_VALUE!}</PatientId>
-        <#break> 
-		</#if>
-		<#if e.DATA_ELEMENT_EN_NAME == 'ENCOUNTER_ID'>
-		<IDNo>${e.DATA_ELEMENT_VALUE!}</IDNo>
-		</#if>
+<#list data.ORDER_OUTPAT?sort_by("DATA_ELEMENT_ID") as item>
+	<#if item.DATA_ELEMENT_EN_NAME == 'PATIENT_ID'>
+		<PatientId>${item.DATA_ELEMENT_VALUE!}</PatientId>
+	<#break> 
 </#list>
 
 #case 用法
