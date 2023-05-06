@@ -17,7 +17,10 @@ jobs:
 
       # 设置服务器时区为东八区 
       - name: Set time zone
-        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+        run: |
+          sudo mkdir -p /usr/share/zoneinfo/Asia
+          sudo cp /tmp/Asia/Shanghai /usr/share/zoneinfo/Asia/
+          sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
       - uses: actions/setup-python@v2
         with:
