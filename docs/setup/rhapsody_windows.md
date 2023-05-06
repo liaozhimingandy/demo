@@ -16,13 +16,15 @@
 ##### rhapsody开发工具安装步骤
 ​    [请点击此链接](https://www.alsoapp.com/docs-v1-rhapsody/Installing-Rhapsody-IDE_133164335.html)
 
-**rhapsody开发工具IDE安装文件下载**
+##### rhapsody开发工具IDE安装文件下载
 
-   [请点击此链接](https://pan.baidu.com/s/1eu3fKONrn9FL-CfVcq6lKA?pwd=113o)
+   [请点击此链接](https://pan.baidu.com/s/1eu3fKONrn9FL-CfVcq6lKA?pwd=113o)(目前仅支持windows版本)
 
 ##### dashboard仪表盘安装步骤
 
-​    目前仅支持windows版本
+​	[请点击此链接](https://www.alsoapp.com/docs-note-rhapsody/setup/rhapsody-dashboard/)(目前仅支持windows版本)
+
+   
 
 
 
