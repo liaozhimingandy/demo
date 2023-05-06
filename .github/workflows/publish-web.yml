@@ -21,12 +21,11 @@ jobs:
         with:
           timezoneLinux: "Asia/Shanghai"
 
-      - uses: actions/setup-python@v4 # 使用python装配器
+      - uses: actions/setup-python@v1 # 使用python装配器
         with:
           python-version: 3.x # 指定python版本
-          cache: 'poetry' # 设置缓存
 
-      - name: poetry Install Python dependencies
+      - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
 
