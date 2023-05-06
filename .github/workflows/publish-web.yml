@@ -5,19 +5,25 @@ on:
       - master 
       - main
       - develop
-env:
-  TZ: Asia/Shanghai
 
 jobs:
   deploy:
+    # 服务器环境：最新版 Ubuntu
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      # 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
+          
       - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
 
-      - run: mkdocs gh-deploy --force
+      - name: Build
+        run: mkdocs gh-deploy --force
+        env:
+          TZ: Asia/Shanghai
