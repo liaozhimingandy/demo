@@ -17,16 +17,16 @@ jobs:
 
       # 设置服务器时区为东八区 
       - name: Set time zone
-        run: |
-          sudo mkdir -p /usr/share/zoneinfo/Asia
-          sudo cp /tmp/Asia/Shanghai /usr/share/zoneinfo/Asia/
-          sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
-      - uses: actions/setup-python@v2
+        uses: szenius/set-timezone@v1.0 # 设置执行环境的时区
         with:
-          python-version: 3.x
+          timezoneLinux: "Asia/Shanghai"
 
-      - name: Install Python dependencies
+      - uses: actions/setup-python@v4 # 使用python装配器
+        with:
+          python-version: 3.x # 指定python版本
+          cache: 'poetry' # 设置缓存
+
+      - name: poetry Install Python dependencies
         run: |
           pip install -r requirements.txt
 
