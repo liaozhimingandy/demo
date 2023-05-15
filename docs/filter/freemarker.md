@@ -259,7 +259,7 @@ ${inputXML.message.SourceAndScheduleInfo[0].SCHEDULE_DOCTOR_ID!}
 </RCMR_IN000002UV02>
 # 示例-1:
 # 1.freemarker 首行添加命名空间说明;根据需要可以添加多个命名空间
-# <#ftl ns_prefixes={"e":"urn:hl7-org:v3"}>
+<#ftl ns_prefixes={"e":"urn:hl7-org:v3"}>
 # 2.正确取值
 ${inputXML["/*/e:id/@extension"]}  # 输出: 8122bc24-6e0d-4599-b61a-664bc58d0462
 # 更多灵活用法参考freemarker官方文档及rhapsody文档
@@ -269,8 +269,10 @@ ${inputXML["/*/e:id/@extension"]}  # 输出: 8122bc24-6e0d-4599-b61a-664bc58d046
 <#ftl
 ns_prefixes={"mydefault":"urn:hl7-org:v3","mif":"urn:hl7-org:v3/mif","xsi":"http://www.w3.org/2001/XMLSchema-instance"}>
 # 2.正确取值
-{inputXML["/mydefault:ClinicalDocument/mydefault:component/mydefault:structuredBody/mydefault:component[7]/mydefault:section/mydefault:entry/mydefault:observation/mydefault:value/@xsi:type"]}
+${inputXML["/mydefault:ClinicalDocument/mydefault:component/mydefault:structuredBody/mydefault:component[7]/mydefault:section/mydefault:entry/mydefault:observation/mydefault:value/@xsi:type"]}
 ```
+
+!!! warning "过滤器配置项Escape Characters Mode ;须设为None;<br>该选项内容:确定是否将转义符用于指定的格式。当选择“None”选项时，将检索到确切的值。当选择“XML”选项时，特殊字符将转换为其实体。当选择"HL7"选项时，特殊字符将转换为它们的转义序列"
 
 #### 使用查找表
 
