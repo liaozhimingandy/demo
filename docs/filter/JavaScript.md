@@ -314,6 +314,7 @@ var sender = list_sender[Math.floor(Math.random()*list_sender.length)];
 ##### 其他操作
 
 ```python
+generateUuid() // 生成随机uuid
 // 日期格式化转换
 var data = dateChangeFormat('2012/01/02', 'YYYY/MM/dd', 'dd/MM/YYYY');
 // 一个属性添加多个值
