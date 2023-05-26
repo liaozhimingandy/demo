@@ -275,18 +275,7 @@ next.setText("<message>"+errxml+"<message>")
 
 ```python
 // 动态xml节点转json
-var tmp_data = new XML(input[0].xml);
-var content = tmp_data.children();
-var data = {};
-for(var i = 0; i < content.length(); i++){
-	//log.info(t[i]);
-	//log.info(content[i].name().toString()+':'+content[i].text());
-    // 也可使用content[j].toXMLString()得到在字符串节点,然后使用字符串截取即可;
-	var str_data = content[i].name().toString()+':'+content[i].text()
-	var arr = str_data.split(":");  
-	data[arr[0].toLowerCase()] = arr[1];  
-	};
-next.text = JSON.stringify(data);
+// 请参考:公共JavaScript库目录下->动态xml接转json部分
 ```
 
 ##### 查找表操作
@@ -474,5 +463,34 @@ function str2date(str) {
 lib.str2date("20221024010101")
 // eg2: 得到时间戳
 lib.str2date("20221024010101").valueOf() 
+```
+
+###### 动态xml接转json
+
+```javascript
+function Dxml2json(xml) {
+    /*
+    动态xml节点转json键值对
+    形如: <message>
+	<data>
+    	<d1>data</d1>
+    </data>
+    </message>
+    */
+    var tmp_data = new XML(xml);
+    var content = tmp_data.data.children();
+    var data = {};
+    for(var i = 0; i < content.length(); i++){
+        // 也可使用content[j].toXMLString()得到在字符串节点,然后使用字符串截取即可;
+        if(content[i].name() !== null){
+        var str_data = content[i].name().toString()+':'+content[i].text()
+        var arr = str_data.split(":");  
+        data[arr[0].toLowerCase()] = arr[1];  
+        }
+        };
+    return data;
+}
+// eg-1
+lib.Dxml2json(input[0].xml)
 ```
 
