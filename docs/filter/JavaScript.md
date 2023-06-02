@@ -115,28 +115,24 @@ DATA_ELEMENT_VALUE = library.DateStrToGBTime(_xml.patient.child(DATA_ELEMENT_EN_
 ###### 其它
 
 ```javascript
-// 遍历xml节点示例
+// 遍历xml节点示例;注意操作xml,路径少一层根节点
 var data = new XML(input[0].xml);
-
-var data =  input[0].xml;
-data.DML_TYPE = 'D'; // 也适用于json消息字段设置
 data.DML_TYPE.@id; //取xml节点的属性内容
-或者
+data.DML_TYPE = 'D'; // 也适用于json消息字段设置
+
+// or 非xml处理时,须考虑根节点
 next.setField('/CACHE/DML_TYPE', 'D');  //也适用于HL7 v2版本消息字段设置
 
 // 若不指定item索引值,则返回所以item的节点用,分割
 var patient_id = next.getField('//controlActProcess/subject/procedureRequest/componentOf1/encounter/subject/patient/id/item[@root="2.16.156.10011.2.5.1.4"]/@extension')
 //设置xpath节点数据
-next.setField('//observationRequest/componentOf1/encounter/id/item[@root="2.16.156.10011.2.5.1.8"]/@extension', next.getProperty('visit_times'));
+next.setField('//observationRequest/componentOf1/encounter/id/item[@root="2.16.156.10011.2.5.1.8"]/@extension', next.getProperty('visit_times'));   
 
-// switch操作
-switch(service_code){
-   case "S0001": 
-   case "S0002":
-        break;
-   default:
-        break;
-}       
+// 获取xml节点重复个数
+// eg-1;注意少一层根节点;返回为浮点数
+input[0].xml.OrderRowIDList.length();
+// eg-2;/Response/OrderRowIDList为xml路径;推荐
+input[0].getRepeatCount('/Response/OrderRowIDList');
 ```
 
 ##### JSON操作
@@ -337,6 +333,15 @@ body.lastIndexOf('}')
 // 判断列表是否存在某个指定元素
 var list_append = ['E280401', 'E280402'];
 list_append.indexOf(data.event.eventCode) >=0 //返回true或false
+
+// switch操作
+switch(service_code){
+   case "S0001": 
+   case "S0002":
+        break;
+   default:
+        break;
+}
 ```
 
 ##### JavaScript计数器
