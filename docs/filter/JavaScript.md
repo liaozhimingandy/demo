@@ -332,7 +332,7 @@ body.lastIndexOf('}')
 
 // 判断列表是否存在某个指定元素
 var list_append = ['E280401', 'E280402'];
-list_append.indexOf(data.event.eventCode) >=0 //返回true或false
+list_append.indexOf(data.event.eventCode) >= 0 //返回true或false
 
 // switch操作
 switch(service_code){
@@ -414,7 +414,7 @@ next.setProperty("source_system_code", data["source_system_code"]);
 ```javascript
 function get_datetime_format(date, format) {
   var get_datetime_format = function (obj_date, fmt) {
-  var dateTime=obj_date;
+  var dateTime = obj_date;
   var o = {
       "M+": dateTime.getMonth() + 1, //月份 
       "d+": dateTime.getDate(), //日 
