@@ -50,6 +50,11 @@ ${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
 	去掉右边空白和回车换行:<B style="color:red"><#rt></B><br>
 	取消上面的效果:<B style="color:red"><#nt></B></br>
 
+!!! bug "已知问题"
+
+```
+部分消息测试在该过滤器测试功能模块进行测试会出现失败情况,请以服务器执行结果为准,请控制台查看执行效果;
+```
 
 #### 字符串操作
 
