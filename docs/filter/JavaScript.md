@@ -180,9 +180,11 @@ DIAGNOSIS_ID(.|\n)*?01_1
 
 // 除去换行符号和空格;不适合>50k的文本处理                                                     
 var data = input[0].text.replace(/\r\n/g,"").replace(/\s+/g,"");
-next.text = data;
-// 全部替换,如果不加/g,则替换第一个
+next.setText(data, "utf-8");
+// eg-1: 全部替换,如果不加/g,则替换第一个
 replace(/-/g, '')
+// eg-2: 替换\"成空字符串
+replace(/\\"/g, '')
 
 // xml特殊符号去除
 // 存数据库之前
@@ -203,7 +205,7 @@ replace(/\n/g, "\\n").
 replace(/\t/g, "\\t").
 replace(/\\/g, "\\\\").
 replace(/ /g, "&nbsp;");
-next.text = '<xml>'+data+'</xml>';
+next.text = '<xml><![CDATA['+data+']]></xml>';
 ```
 ##### 自定义索引
 
