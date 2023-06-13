@@ -54,8 +54,9 @@ ${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
 
     部分消息测试在该过滤器测试功能模块进行测试会出现失败情况,请以服务器执行结果为准,请控制台查看执行效果;
 
-
 #### 字符串操作
+
+[更多信息请参考](https://freemarker.apache.org/docs/ref_builtins_string.html#ref_builtin_js_string)
 
 ```python
 # 字符串连接操作- +
@@ -116,8 +117,15 @@ ${"   v abcd cc "?trim}
 </#list>
 <#--判断是否还有下一个元素-->
 <#if word_has_next>,</#if>
-?将特殊html标记进行转换,如<转换成<
 ?matches：是否匹配 一个正则
+<#--按json规则进行转义-->                                        
+?json_string
+<#--按json规则进行转义-->                                        
+?js_string
+<# --Java 语言的转义规则对字符串进行转义-->
+?j_string
+<# --JavaScript语言的转义规则对字符串进行转义-->
+?js_string
 ```
 
 #### 日期相关操作
