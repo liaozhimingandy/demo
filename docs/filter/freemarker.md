@@ -56,7 +56,7 @@ ${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
 
 #### 字符串操作
 
-[更多信息请参考](https://freemarker.apache.org/docs/ref_builtins_string.html#ref_builtin_js_string)
+[更多信息请参考](https://freemarker.apache.org/docs/ref_builtins_string.html)
 
 ```python
 # 字符串连接操作- +
@@ -122,7 +122,7 @@ ${"   v abcd cc "?trim}
 ?json_string
 <#--按json规则进行转义-->                                        
 ?js_string
-<# --Java 语言的转义规则对字符串进行转义-->
+<# --Java语言的转义规则对字符串进行转义-->
 ?j_string
 <# --JavaScript语言的转义规则对字符串进行转义-->
 ?js_string
