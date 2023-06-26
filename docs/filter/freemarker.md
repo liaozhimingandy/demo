@@ -316,7 +316,10 @@ ${Variables.getValue('social_credit_id')}
 
 ```python
 # 三元运算符
-${(tmp.EMPI_ID == '')?string('0', tmp.EMPI_ID)}
+#booleanExp?then(whenTrue, whenFalse)
+${(tmp.EMPI_ID == '')?then('0', tmp.EMPI_ID)}
+# 高级用法,条件为ture时,再根据其它属性进行判断
+true?switch(priority <= 1, "low", priority == 2, "medium", priority >= 3, "high")
 
 # ?? 判断左侧的变量是否丢失
 <#if !data.message.PATIENT?? && !data.message.PATIENT_BASE??>
