@@ -37,6 +37,9 @@ ${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
 # ?? 判断变量是否存在或对象的属性或xml节点值是否为null
 #如何输出${xxx} 这样的字符串 
 <#noparse>${ccc}</#noparse>
+
+# 设置为自动转义
+<#ftl output_format="XML" auto_esc=true>
 ```
 
 !!! success  "xml特殊字符处理" 
