@@ -282,8 +282,10 @@ next.setText("<message>"+errxml+"<message>")
 // 查找表使用
 if(tmp_dig_code != null && tmp_dig_code.length > 0){
     var data = lookup("mapping_icd_10",{"value_dh": tmp_dig_code});
-    var dig_code = data.value;
-    var dig_name = data.comment;
+    if(data != null){
+    	var dig_code = data.value;
+    	var dig_name = data.comment;
+    }
 }
 //获取环境变量
 var env = lookup("configs", {"key": "env"});
