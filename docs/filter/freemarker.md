@@ -33,7 +33,7 @@ ${inputXML.xml}
 # 为空时则使用默认值
 ${msg!""}或${msg!}
 # xml节点兼容性写法,当该节点不存在时取空字符串,推荐
-${inputXML.Response.comment?has_content?then(inputXML.Response.comment , "")}
+${inputXML.Response.comment?has_content?then(inputXML.Response.comment, "")}
 # ?? 判断变量是否存在或对象的属性或xml节点值是否为null
 #如何输出${xxx} 这样的字符串 
 <#noparse>${ccc}</#noparse>

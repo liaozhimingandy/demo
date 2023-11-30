@@ -8,7 +8,7 @@
 | rhapsody.tar | rhapsody镜像文件 |
 | xxxx.ohl     | license文件      |
 
-前提有docker环境;centos7下安装docker请点击[此链接](docker_setup_centos7.md)
+前提有docker环境;centos7下安装docker请点击[此链接](https://docs.docker.com/engine/install/centos/)
 
 ##### 镜像下载
 

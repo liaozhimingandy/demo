@@ -7,28 +7,37 @@ on:
       - develop
 
 jobs:
+  # 自动部署作业
   deploy:
     # 服务器环境：最新版 Ubuntu
     runs-on: ubuntu-latest
     steps:
       # 拉取代码
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          sparse-checkout: |
+            docs
+            includes
 
       # 设置服务器时区为东八区 
       - name: Set time zone
         uses: szenius/set-timezone@v1.0 # 设置执行环境的时区
         with:
           timezoneLinux: "Asia/Shanghai"
-
+      
+      # 指定python版本
       - uses: actions/setup-python@v1 # 使用python装配器
         with:
           python-version: 3.x # 指定python版本
 
+      # 安装依赖
       - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
 
+      # 开始构建
       - name: Build
         run: mkdocs gh-deploy --force
         env:

@@ -273,7 +273,7 @@ next.setText("<message>"+errxml+"<message>")
 
 ```python
 // 动态xml节点转json
-// 请参考:公共JavaScript库目录下->动态xml接转json部分
+// 请参考:公共JavaScript库目录下->动态xml转json
 ```
 
 ##### 查找表操作
@@ -406,7 +406,7 @@ function get_url_key(url) {
   return params;
 }
 
-//示例
+//eg-1
 var tmp_url = next.getProperty('http:request-url');
 var data = get_url_key(tmp_url);
 next.setProperty("patient_id", data["patient_id"]);
@@ -443,11 +443,11 @@ function get_datetime_format(date, format) {
 return get_datetime_format(date, format);
 }
 
-//eg1:
+//eg-1:
 log.info(lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
-//eg2:
+//eg-2:
 log.info(lib.get_datetime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
-// eg3: 标准时间格式: ISO 8601
+// eg-3: 标准时间格式: ISO 8601
 log.info(lib.get_datetime_format(new Date(), "yyyy-MM-ddTHH:mm:ss+08:00"));
 ```
 
@@ -468,13 +468,13 @@ function str2date(str) {
     var time = new Date(y, m, d, h, mm, ss, 0);      
     return time;      
 }   
-// eg1: 得到时间对象
+// eg-1: 得到时间对象
 lib.str2date("20221024010101")
-// eg2: 得到时间戳
+// eg-2: 得到时间戳
 lib.str2date("20221024010101").valueOf() 
 ```
 
-###### 动态xml接转json
+###### 动态xml转json
 
 ```javascript
 function Dxml2json(xml) {
