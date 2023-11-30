@@ -20,6 +20,7 @@ jobs:
           sparse-checkout: |
             docs
             includes
+            overrides
 
       # 设置服务器时区为东八区 
       - name: Set time zone
