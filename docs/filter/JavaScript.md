@@ -406,7 +406,7 @@ function get_url_key(url) {
   return params;
 }
 
-//eg-1
+// 示例-1
 var tmp_url = next.getProperty('http:request-url');
 var data = get_url_key(tmp_url);
 next.setProperty("patient_id", data["patient_id"]);
@@ -443,11 +443,11 @@ function get_datetime_format(date, format) {
 return get_datetime_format(date, format);
 }
 
-//eg-1:
+// 示例-1:
 log.info(lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
-//eg-2:
+// 示例-2:
 log.info(lib.get_datetime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
-// eg-3: 标准时间格式: ISO 8601
+// 示例-3: 标准时间格式: ISO 8601
 log.info(lib.get_datetime_format(new Date(), "yyyy-MM-ddTHH:mm:ss+08:00"));
 ```
 
@@ -468,9 +468,9 @@ function str2date(str) {
     var time = new Date(y, m, d, h, mm, ss, 0);      
     return time;      
 }   
-// eg-1: 得到时间对象
+// 示例-1: 得到时间对象
 lib.str2date("20221024010101")
-// eg-2: 得到时间戳
+// 示例-2: 得到时间戳
 lib.str2date("20221024010101").valueOf() 
 ```
 
@@ -499,7 +499,7 @@ function Dxml2json(xml) {
         };
     return data;
 }
-// eg-1
+// 示例-1
 lib.Dxml2json(input[0].xml)
 ```
 

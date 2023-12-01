@@ -333,7 +333,7 @@ true?switch(priority <= 1, "low", priority == 2, "medium", priority >= 3, "high"
 		<EMPI_ID null="yes"/>
 		<PATIENT_NAME null="yes"/>
 </#if>
-# 示例2
+# eg-1
 #?reverse使用同sort相同。reverse还可以同sort_by一起使用
 <#list data.ORDER_OUTPAT?sort_by("DATA_ELEMENT_ID") as item>
 	<#if item.DATA_ELEMENT_EN_NAME == 'PATIENT_ID'>
@@ -388,9 +388,9 @@ true?switch(priority <= 1, "low", priority == 2, "medium", priority >= 3, "high"
 <#--声明一个序列，包含若干个元素--> 
 <#assign order_status_is_not_neeed = ['U', 'D', 'C']> 
 <#--使用seq_contains判断序列中的元素是否存在-->
-eg1:
+示例-1:
 order_status_is_not_neeed?seq_contains(data.StatusCode)
-eg2:
+示例-2:
 "U": ${x?seq_contains("U")?string("yes", "no")}
 //输出 U:yes
 //?size: 得到序列、数组的元素个数
@@ -433,7 +433,7 @@ eg2:
 #### 正则表达式
 
 ```python
-#eg1: 字符串正则替换示例
-eg1:${inputXML.PatOrdList.ClinicDisease?replace('\n', '<br>', 'r')?replace('"', '”')}
+#示例-1: 字符串正则替换示例
+${inputXML.PatOrdList.ClinicDisease?replace('\n', '<br>', 'r')?replace('"', '”')}
 更多请参考: https://freemarker.sourceforge.io/docs/ref_builtins_string.html#ref_builtin_string_flags
 ```
