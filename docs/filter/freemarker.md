@@ -1,6 +1,6 @@
 ### 模板引擎-freemarker
 
-FreeMarker 是一款 模板引擎： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。
+**FreeMarker** 是一款 模板引擎： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。
 
 模板编写为FreeMarker Template Language (FTL)。它是简单的，专用的语言， *不是* 像PHP那样成熟的编程语言。 那就意味着要准备数据在真实编程语言中来显示，比如数据库查询和业务运算， 之后模板显示已经准备好的数据。在模板中，你可以专注于如何展现数据， 而在模板之外可以专注于要展示什么数据。
 
@@ -32,13 +32,14 @@ ${inputXML.xml}
 
 # 为空时则使用默认值
 ${msg!""}或${msg!}
+
 # xml节点兼容性写法,当该节点不存在时取空字符串,推荐
 ${inputXML.Response.comment?has_content?then(inputXML.Response.comment, "")}
 # ?? 判断变量是否存在或对象的属性或xml节点值是否为null
 #如何输出${xxx} 这样的字符串 
 <#noparse>${ccc}</#noparse>
 
-# 设置为自动转义
+# 说明输出文件是xml,设置为自动转义
 <#ftl output_format="XML" auto_esc=true>
 ```
 
@@ -123,8 +124,6 @@ ${"   v abcd cc "?trim}
 ?matches：是否匹配 一个正则
 <#--按json规则进行转义-->                                        
 ?json_string
-<#--按json规则进行转义-->                                        
-?js_string
 <# --Java语言的转义规则对字符串进行转义-->
 ?j_string
 <# --JavaScript语言的转义规则对字符串进行转义-->

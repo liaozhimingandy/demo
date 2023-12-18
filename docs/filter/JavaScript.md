@@ -28,7 +28,7 @@ next.setProperty("data", null);
 generateUuid()
 ```
 
-!!! success "Rhapsody解析大json文本推荐用法:<br>1.使用javascript封装成xml;{==var data = "<xml><![CDATA["+input[0].text+"]]></xml>";==}<br>2.使用freemarker解析json;需配置:{==Escape Characters Mode设为None;==}"
+!!! success "Rhapsody解析大json文本推荐用法:<br>1.使用javascript封装成xml;{==var data = "&lt;xml&gt;<![CDATA["+input[0].text+"]]>&lt;/xml&gt;";==}<br>2.使用freemarker解析json;需配置:{==Escape Characters Mode设为None;==}"
 
 ##### 其它方式解析大文本json示例
 
@@ -406,7 +406,7 @@ function get_url_key(url) {
   return params;
 }
 
-// 示例-1
+// eg-1
 var tmp_url = next.getProperty('http:request-url');
 var data = get_url_key(tmp_url);
 next.setProperty("patient_id", data["patient_id"]);
@@ -443,11 +443,11 @@ function get_datetime_format(date, format) {
 return get_datetime_format(date, format);
 }
 
-// 示例-1:
+// eg-1:
 log.info(lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
-// 示例-2:
+// eg-2:
 log.info(lib.get_datetime_format(new Date(parseInt(next.getProperty("InputTime"))), "yyyy-MM-dd HH:mm:ss.S"));
-// 示例-3: 标准时间格式: ISO 8601
+// eg-3: 标准时间格式: ISO 8601
 log.info(lib.get_datetime_format(new Date(), "yyyy-MM-ddTHH:mm:ss+08:00"));
 ```
 
@@ -468,9 +468,9 @@ function str2date(str) {
     var time = new Date(y, m, d, h, mm, ss, 0);      
     return time;      
 }   
-// 示例-1: 得到时间对象
+// eg-1: 得到时间对象
 lib.str2date("20221024010101")
-// 示例-2: 得到时间戳
+// eg-2: 得到时间戳
 lib.str2date("20221024010101").valueOf() 
 ```
 
@@ -499,7 +499,43 @@ function Dxml2json(xml) {
         };
     return data;
 }
-// 示例-1
+// eg-1
 lib.Dxml2json(input[0].xml)
+```
+
+###### 基于HMAC-SHA1的消息签名
+
+```javascript
+function hmac_sha1(key, message){
+    /*
+    key: 用于签名的密钥
+    message: 签名的数据
+    return: 返回基于key的生成的签名
+    */
+    var strInstance = new java.lang.String(key);
+    var messageInstance = new java.lang.String(message);
+    var keybytes = strInstance.getBytes("UTF-8");
+    var messagebytes = messageInstance.getBytes("UTF-8");
+    var secretKey = new javax.crypto.spec.SecretKeySpec(keybytes, "HmacSHA1");
+    var mac = javax.crypto.Mac.getInstance("HmacSHA1");
+        mac.init(secretKey);
+    var hmacSha1_bytes = mac.doFinal(messagebytes);
+
+     // 将结果转换为十六进制字符串
+    var result = new java.lang.StringBuilder();
+
+    for (var i = 0; i < hmacSha1_bytes.length; i++) {
+        var hex = java.lang.Integer.toHexString(hmacSha1_bytes[i] & 0xFF);
+                if (hex.length() == 1) {
+                    result.append('0');
+                }
+                result.append(hex);
+      }
+
+    return result.toString();
+}
+
+// eg-1: 
+log.ingo("test的签名内容为:"+lib.hmac_sha1("test", "test"))
 ```
 
