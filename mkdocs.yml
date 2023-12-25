@@ -133,7 +133,7 @@ nav:
   - 服务端:
     - windows部署: setup/rhapsody-windows.md
     - centos7部署: setup/rhapsody-centos7.md
-    - 容器部署: setup/docker-installer.md
+    - docker部署: setup/docker-installer.md
   - 监控程序:
     - Dashboard部署: setup/rhapsody-dashboard.md
   - 客户端:
