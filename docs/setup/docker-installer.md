@@ -2,18 +2,18 @@
 
 ##### 安装准备
 
-| 文件         | 描述             |
-| ------------ | ---------------- |
-| docker.tar   | docker环境       |
-| rhapsody.tar | rhapsody镜像文件 |
-| xxxx.ohl     | license文件      |
+| 文件               | 描述             |
+| ------------------ | ---------------- |
+| docker.tar         | docker环境       |
+| image-rhapsody.tar | rhapsody镜像文件 |
+| xxxx.ohl           | license文件      |
 
 前提有docker环境;centos7下安装docker请点击[此链接](https://docs.docker.com/engine/install/centos/)
 
 ##### 镜像下载
 
    ```yaml
-   docker pull liaozhiming/rhapsody:6.7.210901_alpha
+   docker pull liaozhiming/rhapsody
    ```
 
 ##### 容器启动
@@ -64,7 +64,7 @@ docker-compose down
                 - "3041:3041"
                 - "4031:4031"
                 - "52053-52067:52053-52067"
-            volumes: *rhapsody-volumes
+            # volumes: *rhapsody-volumes
             hostname: rhapsody
             dns:
               - 8.8.8.8
