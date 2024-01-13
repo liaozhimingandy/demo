@@ -300,6 +300,14 @@ var list_sender = ['H0001', 'H0002'];
 var sender = list_sender[Math.floor(Math.random()*list_sender.length)];
 ```
 
+##### 系统保留关键字取值
+
+```javascript
+// extends为系统保留关键字,请使用字典取值法进行取值
+// eg-1
+log.info(data.message.message['extends'])
+```
+
 ##### 其他操作
 
 ```python
@@ -407,7 +415,7 @@ var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
       }catch(e){}
       return params;
     }
-
+    
     // eg-1
     var tmp_url = next.getProperty('http:request-url');
     var data = lib.get_url_key(tmp_url);
@@ -417,7 +425,7 @@ var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
 
 ###### 时间格式化
 
-??? ":material-file: docker-compose.yaml"
+??? ":material-file: get_datetime_format.js"
 
     ```javascript
     function get_datetime_format(date, format) {
@@ -443,10 +451,10 @@ var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
       }
       return fmt;
     }
-
+    
     return get_datetime_format(date, format);
     }
-
+    
     // eg-1:
     log.info(lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss.S"));
     // eg-2:
@@ -530,10 +538,10 @@ var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
         var mac = javax.crypto.Mac.getInstance("HmacSHA1");
             mac.init(secretKey);
         var hmacSha1_bytes = mac.doFinal(messagebytes);
-
+    
          // 将结果转换为十六进制字符串
         var result = new java.lang.StringBuilder();
-
+    
         for (var i = 0; i < hmacSha1_bytes.length; i++) {
             var hex = java.lang.Integer.toHexString(hmacSha1_bytes[i] & 0xFF);
                     if (hex.length() == 1) {
@@ -541,10 +549,10 @@ var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
                     }
                     result.append(hex);
           }
-
+    
         return result.toString();
     }
-
+    
     // eg-1: 
     log.ingo("test的签名内容为:" + lib.hmac_sha1("test", "test"))
     ```
@@ -555,9 +563,9 @@ var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
 
     ```javascript
     # eg-1
-
+    
     log.info(lib.md5_hexdigest("abc"))
-
+    
     /*  
      * 实现一个简单的自我测试功能,检查是否正常执行  
      */  
@@ -565,7 +573,7 @@ var result = lib.get_datetime_format(new Date(), "yyyy-MM-dd HH:mm:ss");
     {  
       return md5_hexdigest("abc") == "900150983cd24fb0d6963f7d28e17f72";  
     }  
-
+    
     /*  
      * 接受一个字符串作为输入数据,将其编码为字节（bytes）并计算MD5哈希值,最后通过返回获取十六进制表示的哈希值;
      */ 
