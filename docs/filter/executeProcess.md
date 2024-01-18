@@ -1,6 +1,6 @@
 ##### Execute Process
 
-用于执行外部程序进程,[参考链接]([https://www.alsoapp.com/docs-rhapsody/6.9.1/en/execute-process.html#examples-760)
+用于执行外部程序进程,[参考链接](https://www.alsoapp.com/docs-rhapsody/6.9.1/en/execute-process.html#examples-760)
 
 ###### 配置参考
 
