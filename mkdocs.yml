@@ -72,6 +72,8 @@ theme:
 
 # Plugins
 plugins:
+  - optimize:
+      enabled: !ENV [CI, false]
   - search:
       separator: '[\\s\\u200b\\-]'
   - minify:
@@ -163,6 +165,10 @@ nav:
 
   # Customization
 extra:
+  social:
+    - icon: fontawesome/brands/twitter 
+      link: https://www.alsoapp.com/
+
   analytics: 
     # provider: google
     # property: G-XXXXXXXXXX  #你的Google Analytics ID
