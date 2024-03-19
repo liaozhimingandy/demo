@@ -1,6 +1,6 @@
 # Project information
 site_name: 'docs note for rhapsody'
-site_author: 'andy'
+site_author: 'ANDY'
 site_description: 'rhapsody文档'
 site_url: 'https://www.alsoapp.com/docs-note-rhapsody' # 此处定义url地址
 copyright: docs-note-rhapsody
@@ -27,12 +27,12 @@ theme:
       scheme: default
       toggle:
         icon: material/lightbulb-outline
-        name: Switch to dark mode
+        name: 切换至黑暗模式
     - media: "(prefers-color-scheme: dark)" 
       scheme: slate
       toggle:
         icon: material/lightbulb
-        name: Switch to light mode
+        name: 切换至白天模式
   features:
     - content.code.annotate
     # - content.tabs.link
@@ -154,6 +154,7 @@ nav:
     - 中间机构证书安装: other/cacert-install-agent.md
   - SSL证书到期处理:
     - SSL证书到期后处理方案: other/https-ssl.md
+  - OpenLDAP: other/openldap.md
   - api: 
     - 常用api: other/api.md
   - 正则表达式: filter/regexp.md
