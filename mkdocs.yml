@@ -155,6 +155,7 @@ nav:
   - SSL证书到期处理:
     - SSL证书到期后处理方案: other/https-ssl.md
   - OpenLDAP: other/openldap.md
+  - Heapdump: other/heapdump-warning.md
   - api: 
     - 常用api: other/api.md
   - 正则表达式: filter/regexp.md
