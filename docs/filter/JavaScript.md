@@ -4,6 +4,8 @@
 
 !!! warning "JavaScript过滤器不应处理大批量json数据,否则导致引擎GC Pause"
 
+!!! warning "为避免平台出现乱码问题,通讯点及过滤器编码统一设置为UTF-8"
+
 ##### 常用
 
 ```javascript
