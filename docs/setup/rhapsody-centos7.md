@@ -10,11 +10,11 @@
 
 #### 安装步骤
 
-[请点击此链接](https://www.alsoapp.com/docs-v1-rhapsody/133164332.html)
+[请点击此链接](https://www.alsoapp.com/docs-rhapsody/6.9.1/en/installing-the-rhapsody-engine-on--nix.html)
 
 !!! note  "温馨提示<br>1.首先安装java-1.8.0-openjdk;<br>2.切换至非root用户安装;"
 
 #### 自动重启设置
 
-[请点击此链接](https://www.alsoapp.com/docs-v1-rhapsody/133164333.html)
+[请点击此链接](https://www.alsoapp.com/docs-rhapsody/6.9.1/en/auto-starting-rhapsody-on--nix.html)
 

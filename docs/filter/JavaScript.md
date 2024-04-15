@@ -144,7 +144,7 @@ input[0].getRepeatCount('/Response/OrderRowIDList');
 //删除门诊就诊节点信息
 delete data.queryAck.ENCOUNTER_OUTPATIENTS;
 
-// 遍历json节点,rhapsody 6.5之前版本不支持该版本,请采用下面的方式二
+// 遍历json节点,rhapsody 6.7之前版本不支持该版本,请采用下面的方式二
 data.message.PATIENT.forEach(function(item) {
 if(item['DATA_ELEMENT_EN_NAME'].indexOf('DATE') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('TIME') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('GMT') > -1){
 		content[item['DATA_ELEMENT_EN_NAME']] = lib.get_datetime_format(lib.str2date(item.DATA_ELEMENT_VALUE.replace('T', '').valueOf()), "yyyy-MM-dd HH:mm:ss");
@@ -153,9 +153,14 @@ if(item['DATA_ELEMENT_EN_NAME'].indexOf('DATE') > -1 || item['DATA_ELEMENT_EN_NA
         }
     });
 
-// 遍历json节点方式二
+// 此方法只适用于遍历所有key,不适应遍历数组,请结合其它方法
 for(item in PATIENT){
 	next.setProperty(PATIENT[item].DATA_ELEMENT_EN_NAME, PATIENT[item].DATA_ELEMENT_VALUE);
+}
+
+// 方式三
+for(var i=0; i < data.message.PATHOLOGY_APPLY.length; i++){
+	log.info(item in data.message.PATHOLOGY_APPLY[i]);
 }
 
 //json节点判断存在及过滤

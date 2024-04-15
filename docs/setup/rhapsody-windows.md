@@ -11,7 +11,7 @@
 | xxxx.ohl                                 | license文件                   |
 
 ##### Rhapsody集成引擎安装步骤
-​    [请点击此链接](https://www.alsoapp.com/docs-v1-rhapsody/Installing-the-Rhapsody-Engine-on-Windows_133164314.html)
+​    [请点击此链接](https://www.alsoapp.com/docs-rhapsody/6.9.1/en/installing-the-rhapsody-engine-on-windows.html)
 
 ##### dashboard仪表盘安装步骤
 
