@@ -117,7 +117,7 @@ ${"abcd"?right_pad(5,"1x")}
 ${"   v abcd cc "?trim}
 <#--以单词的 形式 分割字符串-->
 <#list " we are chinese you no diao"?word_list as word>
-    ${word}
+    ${word_index}-${word}
 </#list>
 <#--判断是否还有下一个元素-->
 <#if word_has_next>,</#if>
@@ -128,6 +128,8 @@ ${"   v abcd cc "?trim}
 ?j_string
 <# --JavaScript语言的转义规则对字符串进行转义-->
 ?js_string
+<# -- 对xml内置特殊字符转义 -->
+?xml  --> 可用配置中的Escape Characters Mode选择XML 替代
 ```
 
 #### 日期相关操作
@@ -174,6 +176,7 @@ MX:小数部分最大X位
 
 ```java
 str_num?number  //字符串转数字
+number?abs //数值取绝对值
 <#assign num = 1234567.8>
 ${num?string('0.00')}
 输出为：1234567.80

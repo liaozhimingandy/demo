@@ -294,6 +294,13 @@ if(tmp_dig_code != null && tmp_dig_code.length > 0){
     	var dig_name = data.comment;
     }
 }
+// 查找表返回多条数据情况示例
+var items = lookupAll("fans", [{columnName: "service_code", value: next.getProperty("action")}], {returnClolumns: ["firm_id"]});
+items.forEach(function(item) {
+  // 动态路由目标添加
+  next.addPropertyValue("router:Destination", "@com.alsoapp.esb.rhapsody.router."+item.firm_id);
+});
+
 //获取环境变量
 var env = lookup("configs", {"key": "env"});
 next.setProperty("env", env.value);
