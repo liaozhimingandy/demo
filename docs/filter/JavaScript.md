@@ -17,7 +17,7 @@ var gmt_start = new Date().valueOf();
 var gmt_end = new Date().valueOf();
 log.info(gmt_end-gmt_start)
 // 动态路由目标动态设置
-next.setProperty("router:Destination", "@com.alsoapp.esb.rhapsody.router."+_json.event.eventCode);
+next.setProperty("router:Destination", "@com.alsoapp.esb.rhapsody.route."+_json.event.eventCode);
 // 或者使用过滤器Property Population设置属性
 next.setProperty("rhapsody:consumerOperation", "对方web service接口方法名");
 // 禁用消息超时
@@ -58,6 +58,10 @@ EMPI_ID = data.get("message").get("LAB_REPORT").getJSONObject(2).getString("DATA
 ```
 
 ##### XML操作
+
+更多xml操请参考: [点击此链接](https://www.alsoapp.com/docs-rhapsody-7.1/en/xml-object.html)
+
+!!! TIP "温馨提示":<br>1.Rhapsody 7.1 JavaScript使用较新脚本引擎,请尽快升级至Rhapsody7以上<br>
 
 ###### xml添加子节点
 
@@ -298,7 +302,7 @@ if(tmp_dig_code != null && tmp_dig_code.length > 0){
 var items = lookupAll("fans", [{columnName: "service_code", value: next.getProperty("action")}], {returnClolumns: ["firm_id"]});
 items.forEach(function(item) {
   // 动态路由目标添加
-  next.addPropertyValue("router:Destination", "@com.alsoapp.esb.rhapsody.router."+item.firm_id);
+  next.addPropertyValue("router:Destination", "@com.alsoapp.esb.rhapsody.route."+item.firm_id);
 });
 
 //获取环境变量
