@@ -61,7 +61,7 @@ EMPI_ID = data.get("message").get("LAB_REPORT").getJSONObject(2).getString("DATA
 
 更多xml操请参考: [点击此链接](https://www.alsoapp.com/docs-rhapsody-7.1/en/xml-object.html)
 
-!!! TIP "温馨提示":<br>1.Rhapsody 7.1 JavaScript使用较新脚本引擎,请尽快升级至Rhapsody7以上<br>
+!!! success "温馨提示:<br>1.Rhapsody 7.1 JavaScript使用较新脚本引擎,请尽快升级至Rhapsody7以上"
 
 ###### xml添加子节点
 
@@ -118,6 +118,24 @@ DATA_ELEMENT_VALUE = library.DateStrToGBTime(_xml.patient.child(DATA_ELEMENT_EN_
 	}
 ```
 
+###### XML节点循环解析
+
+```javascript
+// 适用于hl7 v3
+// 循环获取诊断信息,以检验申请单为例
+let data_diags = [];
+// 1.获取需要循环的节点
+let diags = content.getElements('//pertinentInformation1');
+// 2.遍历诊断数组;
+diags.forEach(function(diag){
+    temp_diag = {};
+    temp_diag['diag_code'] = diag.getValue('//value/@code');
+    data_diags.push(temp_diag);
+});
+```
+
+!!! success "温馨提示:<br>Rhapsody 7.1 已测试通过<br>forEach用法:<br>arr.forEach(function(currentValue, index, arr){})"
+
 ###### 其它
 
 ```javascript
@@ -148,6 +166,9 @@ input[0].getRepeatCount('/Response/OrderRowIDList');
 //删除门诊就诊节点信息
 delete data.queryAck.ENCOUNTER_OUTPATIENTS;
 
+// forEach用法:
+// arr.forEach(function(currentValue, index, arr), thisValue)
+
 // 遍历json节点,rhapsody 6.7之前版本不支持该版本,请采用下面的方式二
 data.message.PATIENT.forEach(function(item) {
 if(item['DATA_ELEMENT_EN_NAME'].indexOf('DATE') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('TIME') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('GMT') > -1){
@@ -171,6 +192,11 @@ for(var i=0; i < data.message.PATHOLOGY_APPLY.length; i++){
 if(data.hasOwnProperty('status_code') && data.status_code != 200){
 	throw "返回内容异常";
 	}
+
+// 动态json遍历key-value
+Object.entries(data).forEach(function(key, value){
+    next.setProperty(key, value);
+});
 ```
 ##### 正则表达式
 
