@@ -118,6 +118,25 @@ DATA_ELEMENT_VALUE = library.DateStrToGBTime(_xml.patient.child(DATA_ELEMENT_EN_
 	}
 ```
 
+###### XML节点动态获取节点信息
+
+```javascript
+// 根据xml节点信息获取节点信息和值
+// 暂时仅适用于简单xml
+// 1.获取节点
+let items = data.getElements('//data');
+let result = [];
+// 2.遍历
+item.forEach(function(item, index){
+    let nodes = item.getElments('*');
+    let node = {};
+    nodes.forEach(function(item){
+        node[item.domNode.toString().split(':')[0].replace('[', '')] = item.text;
+    });
+    result.push(node);
+}
+```
+
 ###### XML节点循环解析
 
 ```javascript
@@ -129,7 +148,8 @@ let diags = content.getElements('//pertinentInformation1');
 // 2.遍历诊断数组;
 diags.forEach(function(diag){
     temp_diag = {};
-    temp_diag['diag_code'] = diag.getValue('//value/@code');
+    // 注意xpath路径写法,前面不使用//,并且父节点为pertinentInformation1
+    temp_diag['diag_code'] = diag.getValue('observationDx/value/@code');
     data_diags.push(temp_diag);
 });
 ```
@@ -168,8 +188,6 @@ delete data.queryAck.ENCOUNTER_OUTPATIENTS;
 
 // forEach用法:
 // arr.forEach(function(currentValue, index, arr), thisValue)
-
-// 遍历json节点,rhapsody 6.7之前版本不支持该版本,请采用下面的方式二
 data.message.PATIENT.forEach(function(item) {
 if(item['DATA_ELEMENT_EN_NAME'].indexOf('DATE') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('TIME') > -1 || item['DATA_ELEMENT_EN_NAME'].indexOf('GMT') > -1){
 		content[item['DATA_ELEMENT_EN_NAME']] = lib.get_datetime_format(lib.str2date(item.DATA_ELEMENT_VALUE.replace('T', '').valueOf()), "yyyy-MM-dd HH:mm:ss");
@@ -178,8 +196,8 @@ if(item['DATA_ELEMENT_EN_NAME'].indexOf('DATE') > -1 || item['DATA_ELEMENT_EN_NA
         }
     });
 
-// 此方法只适用于遍历所有key,不适应遍历数组,请结合其它方法
-for(item in PATIENT){
+// 方法二
+for(let item of PATIENT){
 	next.setProperty(PATIENT[item].DATA_ELEMENT_EN_NAME, PATIENT[item].DATA_ELEMENT_VALUE);
 }
 
@@ -202,21 +220,21 @@ Object.entries(data).forEach(function(key, value){
 
 ```javascript
 // 更多的正则表达式匹配示例请参考regexp.md文件
-var tmp_data = input[0].text;
-var reg = new RegExp("http://17.{1,128}.pdf");
+const tmp_data = input[0].text;
+const reg = new RegExp("http://17.{1,128}.pdf");
 //如果匹配到则执行一下语句
 if(reg.test(input[0].text)){
-	var tmp_url = reg.exec(input[0].text);
+	let tmp_url = reg.exec(input[0].text);
     //或使用str.match(reg)
 	next.setProperty("tmp_url", tmp_url);
-	var tmp_data = input[0].text.replace(reg, 'url因为有特殊字符而被替换');
+	let tmp_data = input[0].text.replace(reg, 'url因为有特殊字符而被替换');
 	}
 
 // 匹配DIAGNOSIS_ID和01_1之间任意内容
 DIAGNOSIS_ID(.|\n)*?01_1
 
 // 除去换行符号和空格;不适合>50k的文本处理                                                     
-var data = input[0].text.replace(/\r\n/g,"").replace(/\s+/g,"");
+const data = input[0].text.replace(/\r\n/g,"").replace(/\s+/g,"");
 next.setText(data, "utf-8");
 // eg-1: 全部替换,如果不加/g,则替换第一个
 replace(/-/g, '')
