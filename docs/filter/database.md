@@ -2,16 +2,16 @@
 
 ##### 解析输入消息
 
-| 字段                                 | 含义/示例                                                                 |
-| ---------------------------------- | --------------------------------------------------------------------- |
-| Rhapsody全局变量                       | $(myVariable)                                                         |
-| 获得上一个数据集字段数据或者数据库关键列或者存储过程select的值 | @id                                                                   |
-| EDI消息中的字段使用@                       | @PID.PatientName[0].FamilyName.Surname                                |
-| XML消息中的字段使用`                       | &#96;/*/queryByParameter/patient/id/value/item[索引值+1]/@extension&#96; |
-| 列自上一个结果使用@                         | @PatientName                                                          |
-| 存储过程输出参数使用#                        | #newPatientId                                                         |
-| 消息主体                               | **$messageContent**                                                   |
-| 动态表名/列名;                           | $$tbl_name&nbsp;&nbsp;;需要开启允许动态查询的配置(**Options**)                     |
+| 字段                                                         | 含义/示例                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Rhapsody全局变量                                             | $(myVariable)                                                |
+| 获得上一个数据集字段数据或者数据库关键列或者存储过程select的值 | @id                                                          |
+| EDI消息中的字段使用@                                         | @PID.PatientName[0].FamilyName.Surname                       |
+| XML消息中的字段使用`,并且使用完整路径,                       | 示例:个人信息查询服务提取本地患者ID<br>  &#96;/*/controlActProcess/queryByParameter/parameterList/id/@extension&#96; |
+| 列自上一个结果使用@                                          | @PatientName                                                 |
+| 存储过程输出参数使用#                                        | #newPatientId                                                |
+| 消息主体                                                     | **$messageContent**                                          |
+| 动态表名/列名;                                               | $$tbl_name&nbsp;&nbsp;;需要开启允许动态查询的配置(**Options**) |
 
 !!! success "数据库dbe过滤器支持多条sql语句查询,可以减少一个路由使用多次数据过滤器查询"
 
@@ -84,5 +84,4 @@ jdbc:mysql://DatabaseServer/PatientRecords
 select 1 code
 # 通过测试Rhapsody版本: 6.7
 ```
-
 

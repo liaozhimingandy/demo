@@ -12,10 +12,6 @@
 //js解析消息体节点请尽量使用input[0].getField(),不使用next.getField()
 //next一般用于设置属性,设置字段;防止内部死循环;
              
-// 计算代码执行时间
-var gmt_start = new Date().valueOf();
-var gmt_end = new Date().valueOf();
-log.info(gmt_end-gmt_start)
 // 动态路由目标动态设置
 next.setProperty("router:Destination", "@com.alsoapp.esb.rhapsody.route."+_json.event.eventCode);
 // 或者使用过滤器Property Population设置属性
@@ -31,31 +27,6 @@ generateUuid()
 ```
 
 !!! success "Rhapsody解析大json文本推荐用法:<br>1.使用javascript封装成xml;{==var data = "&lt;xml&gt;<![CDATA["+input[0].text+"]]>&lt;/xml&gt;";==}<br>2.使用freemarker解析json;需配置:{==Escape Characters Mode设为None;==}"
-
-##### 其它方式解析大文本json示例
-
-gson.jar[下载地址](/docs-note-rhapsody/assets/file/gson-2.9.1.jar)
-
-fastjson.jar[下载地址](/docs-note-rhapsody/assets/file/fastjson-1.2.80.jar)
-
-```javascript
-//使用gson解析
-var jsonObject = new com.google.gson.JsonParser()
-var data = jsonObject.parse(input[0].text);
-
-next.setProperty('sender', data.get("sender");
-next.setProperty('event_code', data.get("event").getAsString());
-next.setProperty('sender_id', data.get("id").getAsInt());
-
-//fastjson解析示例
-var obj_json = new com.alibaba.fastjson.JSONObject();
-var data = obj_json.parseObject(input[0].text);
-ORG_CODE = data.get("sender").get("organization").getString("code");
-SEARCH_CODE = data.get("message").get("LAB_REPORT").getJSONObject(11).getString("DATA_ELEMENT_VALUE");
-SEARCH_NAME = data.get("message").get("LAB_REPORT").getJSONObject(12).getString("DATA_ELEMENT_VALUE");
-PK_PATIENT = data.get("message").get("LAB_REPORT").getJSONObject(1).getString("DATA_ELEMENT_VALUE");
-EMPI_ID = data.get("message").get("LAB_REPORT").getJSONObject(2).getString("DATA_ELEMENT_VALUE");
-```
 
 ##### XML操作
 
@@ -124,7 +95,7 @@ DATA_ELEMENT_VALUE = library.DateStrToGBTime(_xml.patient.child(DATA_ELEMENT_EN_
 // 根据xml节点信息获取节点信息和值
 // 暂时仅适用于简单xml
 // 1.获取节点
-let items = data.getElements('//data');
+const items = data.getElements('//data');
 let result = [];
 // 2.遍历
 item.forEach(function(item, index){
@@ -144,7 +115,7 @@ item.forEach(function(item, index){
 // 循环获取诊断信息,以检验申请单为例
 let data_diags = [];
 // 1.获取需要循环的节点
-let diags = content.getElements('//pertinentInformation1');
+const diags = content.getElements('//pertinentInformation1');
 // 2.遍历诊断数组;
 diags.forEach(function(diag){
     temp_diag = {};
@@ -212,7 +183,7 @@ if(data.hasOwnProperty('status_code') && data.status_code != 200){
 	}
 
 // 动态json遍历key-value
-Object.entries(data).forEach(function(key, value){
+Object.entries(data).forEach(function([key, value]){
     next.setProperty(key, value);
 });
 ```
@@ -229,9 +200,6 @@ if(reg.test(input[0].text)){
 	next.setProperty("tmp_url", tmp_url);
 	let tmp_data = input[0].text.replace(reg, 'url因为有特殊字符而被替换');
 	}
-
-// 匹配DIAGNOSIS_ID和01_1之间任意内容
-DIAGNOSIS_ID(.|\n)*?01_1
 
 // 除去换行符号和空格;不适合>50k的文本处理                                                     
 const data = input[0].text.replace(/\r\n/g,"").replace(/\s+/g,"");
