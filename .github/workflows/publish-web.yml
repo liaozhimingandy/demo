@@ -1,8 +1,9 @@
 name: ci 
 on:
   push:
-    tags:
-      - v*
+    branches: 
+      - main
+      - develop
 
 jobs:
   # 自动部署作业
