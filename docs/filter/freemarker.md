@@ -35,7 +35,10 @@ ${msg!""}或${msg!}
 
 # xml节点兼容性写法,当该节点不存在时取空字符串,推荐
 ${inputXML.Response.comment?has_content?then(inputXML.Response.comment, "")}
-# ?? 判断变量是否存在或对象的属性或xml节点值是否为null
+
+# ?? 判断变量是否存在或对象的属性或xml节点值是否为null; 返回得到一个bool值
+# 示例请参考 逻辑判断部分
+
 #如何输出${xxx} 这样的字符串 
 <#noparse>${ccc}</#noparse>
 
@@ -234,8 +237,13 @@ ${item.PatientID!}
 </#list>
 
 #针对xml节点值为如下情况时,可使用三元运算符判断是否为null,因为该节点值为空
-eg:<examQuantitativeResultUnit null="yes"/>
+# eg-1
+<examQuantitativeResultUnit null="yes"/>
 ${(inputXML.message.cda.examQuantitativeResultUnit == '')?string('1', '0')}
+# eg-2
+(inputXML["/*/data/inpatient_id/@null"]??)?then("y", "n")
+# 简单节点可直接使用下面方式
+${(inputXML["/*/data/inpatient_id"]??)?then("y", "n")}
 ```
 
 #### 解析xml里json数据
@@ -326,6 +334,11 @@ ${(tmp.EMPI_ID == '')?then('0', tmp.EMPI_ID)}
 # 高级用法,条件为ture时,再根据其它属性进行判断
 true?switch(priority <= 1, "low", priority == 2, "medium", priority >= 3, "high")
 
+## eg: 判断xml节点是否有属性null
+${(inputXML["/*/data/inpatient_id/@null"]??)?then("y", "n")}
+# 简单节点可直接使用下面方式
+${(inputXML["/*/data/inpatient_id"]??)?then("y", "n")}
+
 # ?? 判断左侧的变量是否丢失
 <#if !data.message.PATIENT?? && !data.message.PATIENT_BASE??>
 	<#else>
@@ -378,11 +391,6 @@ true?switch(priority <= 1, "low", priority == 2, "medium", priority >= 3, "high"
   x is not 1 nor 2 nor 3 nor 4
 </#if>
 ```
-
-!!! bug "温馨提示"
-	{==
-	三元运算符会预处理ture和false后需要选择的内容,故有特殊需求请选择if-else语句
-	==}
 
 #### 数组操作
 
